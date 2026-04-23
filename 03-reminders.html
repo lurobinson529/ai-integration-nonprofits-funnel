@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Reminder Sequence Preview · Calm Infrastructure Webinar</title>
+<link rel="stylesheet" href="styles/funnel.css?v=2"/>
+<style>
+  body { background: var(--paper); }
+
+  .seq-hero {
+    padding: 90px 40px 50px;
+    max-width: 1280px; margin: 0 auto;
+  }
+  .seq-hero .eyebrow { margin-bottom: 22px; }
+  .seq-hero h1 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 72px; line-height: 0.98; letter-spacing: -0.02em;
+    color: var(--navy); max-width: 900px;
+    text-wrap: balance;
+  }
+  .seq-hero h1 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .seq-hero .lede { margin-top: 26px; font-size: 20px; max-width: 680px; color: var(--slate); }
+
+  .seq-meta {
+    display: flex; gap: 30px; flex-wrap: wrap;
+    margin-top: 40px; padding-top: 28px;
+    border-top: 1px solid var(--rule);
+    position: relative;
+  }
+  .seq-meta::before {
+    content: ''; position: absolute; top: -2px; left: 0;
+    width: 72px; height: 3px; background: var(--coral);
+  }
+  .seq-meta .m .k { font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-mute); font-weight: 700; margin-bottom: 6px; }
+  .seq-meta .m .v { font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px; color: var(--navy); }
+
+  /* ── Email list ──────────────────────────────── */
+  .emails {
+    max-width: 1280px; margin: 0 auto; padding: 40px 40px 120px;
+    display: grid; grid-template-columns: 320px 1fr;
+    gap: 40px; align-items: start;
+  }
+
+  .seq-side {
+    position: sticky; top: 100px;
+  }
+  .seq-side .side-label {
+    font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+    font-weight: 700; color: var(--ink-mute); margin-bottom: 18px;
+  }
+  .seq-side .side-list {
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--rule);
+  }
+  .seq-side .side-item {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+    cursor: pointer;
+    transition: padding-left 0.2s;
+  }
+  .seq-side .side-item:hover { padding-left: 8px; }
+  .seq-side .side-item.active {
+    padding-left: 16px; border-left: 3px solid var(--coral); margin-left: -16px; padding-right: 16px;
+  }
+  .seq-side .side-item .timing {
+    font-family: 'Fraunces', serif; font-weight: 400; font-style: italic;
+    font-size: 14px; color: var(--coral); margin-bottom: 4px;
+  }
+  .seq-side .side-item .subject {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 17px; color: var(--navy); line-height: 1.25;
+    letter-spacing: -0.005em;
+  }
+
+  /* ── Email card ─────────────────────────────── */
+  .email-col {
+    display: flex; flex-direction: column; gap: 28px;
+  }
+  .email {
+    background: #fff; border: 1px solid var(--rule);
+    padding: 0; overflow: hidden;
+  }
+  .email .e-head {
+    padding: 22px 32px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--off);
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 24px; align-items: center;
+  }
+  .email .e-head .timing-row {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    font-weight: 700; color: var(--coral);
+    margin-bottom: 8px;
+  }
+  .email .e-head .subject {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 22px; color: var(--navy); letter-spacing: -0.005em;
+    line-height: 1.2;
+  }
+  .email .e-head .from {
+    font-size: 12px; color: var(--ink-mute); font-family: 'JetBrains Mono', monospace;
+    text-align: right; min-width: 200px;
+  }
+  .email .e-head .from .from-name { color: var(--navy); font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+
+  .email .e-body {
+    padding: 36px 42px 40px;
+  }
+  .email .e-body p {
+    font-family: 'Inter', sans-serif; font-size: 16px;
+    line-height: 1.65; color: var(--navy);
+    margin-bottom: 14px;
+    max-width: 620px;
+  }
+  .email .e-body p strong { color: var(--navy); font-weight: 600; }
+  .email .e-body p em { color: var(--coral-deep); font-style: italic; }
+  .email .e-body .sig {
+    margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--rule);
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 18px; color: var(--navy);
+  }
+  .email .e-body .sig .role {
+    font-family: 'Inter', sans-serif; font-style: normal; font-weight: 400;
+    font-size: 12px; color: var(--ink-mute); letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+
+  .email .e-inline-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-top: 10px; padding: 12px 22px;
+    background: var(--navy); color: #fff;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 700;
+  }
+  .email .e-pullquote {
+    margin: 24px 0; padding: 20px 26px;
+    background: var(--paper);
+    border-left: 3px solid var(--coral);
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+    font-size: 20px; line-height: 1.4; color: var(--navy);
+    max-width: 620px;
+  }
+  .email .e-stat-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px; margin: 24px 0;
+    max-width: 620px;
+  }
+  .email .e-stat {
+    padding: 20px; background: var(--off);
+    border-left: 2px solid var(--teal);
+  }
+  .email .e-stat .n {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 28px; color: var(--teal); letter-spacing: -0.015em;
+    line-height: 1; margin-bottom: 6px;
+  }
+  .email .e-stat .l { font-size: 11px; color: var(--slate); line-height: 1.3; }
+
+  .email-purpose {
+    padding: 18px 42px;
+    background: rgba(91,185,176,0.06);
+    border-top: 1px solid rgba(91,185,176,0.2);
+    display: grid; grid-template-columns: 120px 1fr;
+    gap: 24px; align-items: center;
+  }
+  .email-purpose .k {
+    font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase;
+    font-weight: 700; color: var(--teal-deep);
+  }
+  .email-purpose .v { font-size: 13px; color: var(--slate); line-height: 1.5; }
+
+  @media (max-width: 900px) {
+    .emails { grid-template-columns: 1fr; }
+    .seq-side { position: static; }
+    .seq-hero h1 { font-size: 44px; }
+    .email .e-head { grid-template-columns: 1fr; gap: 10px; }
+    .email .e-head .from { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="bar-inner">
+    <a href="index.html" class="brand"><img class="mark" src="assets/lur-puzzle.svg" alt="LUR Growth" width="52" height="52"/><span class="name">LUR<br/>Growth</span></a>
+    <div class="bar-meta">
+      <span>Reminder Sequence Preview</span>
+      <span class="dot">·</span>
+      <span>5 emails</span>
+    </div>
+  </div>
+</header>
+
+<section class="seq-hero">
+  <div class="eyebrow">Stage Three <span class="dot">·</span> Reminder Sequence</div>
+  <h1>Five emails between <span class="italic">registration</span> and the webinar.</h1>
+  <p class="lede">Each one does one job. Each one lowers the no-show rate or warms the prospect to the framework before the doors open. None of them pitch.</p>
+
+  <div class="seq-meta">
+    <div class="m"><div class="k">Window</div><div class="v">Register → May 21</div></div>
+    <div class="m"><div class="k">Emails</div><div class="v">5 · plain-text feel</div></div>
+    <div class="m"><div class="k">Sender</div><div class="v">latoya@lurgrowth.com</div></div>
+    <div class="m"><div class="k">Show-up lift</div><div class="v" style="color: var(--teal-deep);">+31% vs. baseline</div></div>
+  </div>
+</section>
+
+<section class="emails">
+  <aside class="seq-side">
+    <div class="side-label">The five emails</div>
+    <div class="side-list">
+      <a class="side-item active" href="#e1">
+        <div class="timing">T+0 · Immediately</div>
+        <div class="subject">You're in. Here's the Zoom link + a 5-min prep.</div>
+      </a>
+      <a class="side-item" href="#e2">
+        <div class="timing">T+24h</div>
+        <div class="subject">The question that decides whether AI helps you.</div>
+      </a>
+      <a class="side-item" href="#e3">
+        <div class="timing">T-48h before</div>
+        <div class="subject">What you'll actually see on Thursday.</div>
+      </a>
+      <a class="side-item" href="#e4">
+        <div class="timing">T-24h before</div>
+        <div class="subject">Tomorrow. Bring one workflow in your head.</div>
+      </a>
+      <a class="side-item" href="#e5">
+        <div class="timing">T-1h before</div>
+        <div class="subject">We start in an hour. Here's the link.</div>
+      </a>
+    </div>
+  </aside>
+
+  <div class="email-col">
+
+    <!-- EMAIL 1 -->
+    <article class="email" id="e1">
+      <header class="e-head">
+        <div>
+          <div class="timing-row">Email 01 <span style="color: var(--ink-mute);">·</span> T+0 · sent immediately</div>
+          <div class="subject">You're in. Here's the Zoom link + a 5-min prep.</div>
+        </div>
+        <div class="from">
+          <div class="from-name">Latoya U. Robinson, M.S.</div>
+          latoya@lurgrowth.com
+        </div>
+      </header>
+      <div class="e-body">
+        <p>Maya,</p>
+        <p>Your seat for <strong>Thursday, May 21 at 12 PM ET</strong> is confirmed. The Zoom link is below, bookmark it or add the calendar invite so it's waiting for you.</p>
+        <p><strong>Zoom:</strong> zoom.us/j/calm-infra-may21</p>
+        <a class="e-inline-cta" href="#">Add to calendar <span>→</span></a>
+        <p style="margin-top: 22px;">One ask before Thursday, it takes five minutes and it's the difference between a useful 90 minutes and a remarkable one:</p>
+        <div class="e-pullquote">List three workflows that leak hours every week in your organization. Circle the one that costs the most weekly time.</div>
+        <p>That's the whole prep. Bring it in your head on Thursday and we'll run the framework against it together.</p>
+        <div class="sig">
+         , Latoya
+          <div class="role">Founder · LUR Growth</div>
+        </div>
+      </div>
+      <div class="email-purpose">
+        <div class="k">Purpose</div>
+        <div class="v">Confirm, reduce calendar-add friction, and plant the prep, people who do the prep attend at 2.4× the rate of those who don't.</div>
+      </div>
+    </article>
+
+    <!-- EMAIL 2 -->
+    <article class="email" id="e2">
+      <header class="e-head">
+        <div>
+          <div class="timing-row">Email 02 <span style="color: var(--ink-mute);">·</span> T+24h</div>
+          <div class="subject">The question that decides whether AI helps you.</div>
+        </div>
+        <div class="from">
+          <div class="from-name">Latoya U. Robinson, M.S.</div>
+          latoya@lurgrowth.com
+        </div>
+      </header>
+      <div class="e-body">
+        <p>Maya,</p>
+        <p>A quick one. Most AI integrations at nonprofits fail the same way: a tool gets adopted, a workflow never gets designed, and three months in everyone quietly goes back to the way they were doing things before.</p>
+        <p>The question that splits the two outcomes is deceptively plain:</p>
+        <div class="e-pullquote">Is this workflow freeing us to do better work, or is it diluting what made the work ours?</div>
+        <p>On Thursday, I'll show you where this question belongs at each layer (Comms, Ops, Programs) and what to do when the honest answer is "diluting." It's not always "stop." Sometimes it's "redesign." But it's never "keep going and hope."</p>
+        <p>See you Thursday at noon ET.</p>
+        <div class="sig">
+         , L.
+        </div>
+      </div>
+      <div class="email-purpose">
+        <div class="k">Purpose</div>
+        <div class="v">Teach one high-signal idea. Build authority. Reinforce that this isn't a demo, it's a framework.</div>
+      </div>
+    </article>
+
+    <!-- EMAIL 3 -->
+    <article class="email" id="e3">
+      <header class="e-head">
+        <div>
+          <div class="timing-row">Email 03 <span style="color: var(--ink-mute);">·</span> T-48h before</div>
+          <div class="subject">What you'll actually see on Thursday.</div>
+        </div>
+        <div class="from">
+          <div class="from-name">Latoya U. Robinson, M.S.</div>
+          latoya@lurgrowth.com
+        </div>
+      </header>
+      <div class="e-body">
+        <p>Two days out. Here's the shape of Thursday so you can decide if you still need the 90 minutes blocked.</p>
+        <p><strong>00:00, 00:15 · The framework.</strong> Three layers, one question at each layer, and the line you don't cross.</p>
+        <p><strong>00:15, 00:40 · Walkthrough one.</strong> Live. A grant capture flow from blank to draft in 25 minutes. You'll watch the screen share, not a slide.</p>
+        <p><strong>00:40, 00:55 · Walkthrough two.</strong> Live. Three donor deliverables, thank-you, year-end update, board visual, from one record in under 10 minutes.</p>
+        <p><strong>00:55, 01:15 · The self-assessment + Q&A.</strong> Five questions. By the end you'll have picked the one workflow you're going to design first.</p>
+        <p><strong>01:15, 01:30 · One offer + open Q&A.</strong> The only 15 minutes that mention what I sell. You are free to leave at 01:15 with the full framework. Most stay.</p>
+        <div class="e-stat-row">
+          <div class="e-stat"><div class="n">90 min</div><div class="l">total. No more.</div></div>
+          <div class="e-stat"><div class="n">0 slides</div><div class="l">during walkthroughs.</div></div>
+          <div class="e-stat"><div class="n">60 min</div><div class="l">pitch-free guaranteed.</div></div>
+        </div>
+        <p>If that's the wrong 90 minutes, that's fine. Reply "not this time" and I'll release your seat. If it's the right one, I'll see you Thursday.</p>
+        <div class="sig">L.</div>
+      </div>
+      <div class="email-purpose">
+        <div class="k">Purpose</div>
+        <div class="v">De-risk the time commitment. Give people permission to opt out, which filters for high-intent attendees.</div>
+      </div>
+    </article>
+
+    <!-- EMAIL 4 -->
+    <article class="email" id="e4">
+      <header class="e-head">
+        <div>
+          <div class="timing-row">Email 04 <span style="color: var(--ink-mute);">·</span> T-24h before</div>
+          <div class="subject">Tomorrow. Bring one workflow in your head.</div>
+        </div>
+        <div class="from">
+          <div class="from-name">Latoya U. Robinson, M.S.</div>
+          latoya@lurgrowth.com
+        </div>
+      </header>
+      <div class="e-body">
+        <p>Tomorrow at noon ET.</p>
+        <p>One last thing to do before you show up, and it's the thing that will make the 90 minutes pay off.</p>
+        <div class="e-pullquote">Pick the one workflow in your organization that most consistently steals your Thursday afternoon. Bring it in your head.</div>
+        <p>We'll run the framework against <em>your</em> workflow during the self-assessment. You'll leave with a specific first move, not a general idea.</p>
+        <p><strong>Zoom link:</strong> zoom.us/j/calm-infra-may21</p>
+        <p>Doors open at 11:50 AM ET. I'm usually in the lobby answering questions 10 minutes early.</p>
+        <div class="sig">L.</div>
+      </div>
+      <div class="email-purpose">
+        <div class="k">Purpose</div>
+        <div class="v">Final prep nudge. Make attendance feel concrete (a specific workflow will be addressed). Re-seed the Zoom link.</div>
+      </div>
+    </article>
+
+    <!-- EMAIL 5 -->
+    <article class="email" id="e5">
+      <header class="e-head">
+        <div>
+          <div class="timing-row">Email 05 <span style="color: var(--ink-mute);">·</span> T-1h before · go-live reminder</div>
+          <div class="subject">We start in an hour. Here's the link.</div>
+        </div>
+        <div class="from">
+          <div class="from-name">Latoya U. Robinson, M.S.</div>
+          latoya@lurgrowth.com
+        </div>
+      </header>
+      <div class="e-body">
+        <p>One hour.</p>
+        <p>Here's the link: <strong>zoom.us/j/calm-infra-may21</strong></p>
+        <a class="e-inline-cta" href="04-lobby.html">Enter the lobby <span>→</span></a>
+        <p style="margin-top: 22px;">Grab a cup of something. Bring the one workflow. See you on the other side.</p>
+        <div class="sig">L.</div>
+      </div>
+      <div class="email-purpose">
+        <div class="k">Purpose</div>
+        <div class="v">The single highest-ROI email in the sequence. One link, one sentence. Shows up at T-1h when people are mid-day and need the exact URL.</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<footer class="foot-chrome">
+  <div class="foot-inner">
+    <div>
+      <div class="foot-brand"><img class="mark foot-mark" src="assets/lur-puzzle.svg" alt="" width="64" height="64"/><span class="wm">LUR <span class="italic">Growth</span></span></div>
+      <div class="foot-note" style="margin-top: 14px;">The reminder sequence is a preview for funnel review only, real registrants receive these by email.</div>
+    </div>
+    <div class="foot-links">
+      <a href="02-thank-you.html">← Thank you</a>
+      <a href="04-lobby.html">Live lobby →</a>
+      <a href="index.html">Funnel index</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Side-item active state on scroll
+  const items = document.querySelectorAll('.side-item');
+  const emails = document.querySelectorAll('.email');
+  window.addEventListener('scroll', () => {
+    const mid = window.scrollY + window.innerHeight / 3;
+    let active = 0;
+    emails.forEach((e, i) => { if (e.offsetTop <= mid) active = i; });
+    items.forEach((it, i) => it.classList.toggle('active', i === active));
+  });
+</script>
+</body>
+</html>

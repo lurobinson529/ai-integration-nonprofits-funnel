@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Calm Infrastructure, Webinar Funnel · Index</title>
+<link rel="stylesheet" href="styles/funnel.css?v=2"/>
+<style>
+  body { background: var(--paper); }
+  .hero {
+    padding: 100px 40px 60px;
+    max-width: 1280px; margin: 0 auto;
+  }
+  .hero .eyebrow { margin-bottom: 32px; }
+  .hero h1 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 92px; line-height: 0.98; letter-spacing: -0.025em;
+    color: var(--navy); margin-bottom: 28px; max-width: 980px;
+    text-wrap: balance;
+  }
+  .hero h1 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .hero p.lede { font-size: 22px; max-width: 720px; margin-bottom: 40px; }
+
+  .hero-meta {
+    display: flex; gap: 40px; flex-wrap: wrap;
+    margin-top: 48px; padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    position: relative;
+  }
+  .hero-meta::before {
+    content: ''; position: absolute; top: -2px; left: 0;
+    width: 72px; height: 3px; background: var(--coral);
+  }
+  .hero-meta .m {
+    font-family: 'Inter', sans-serif;
+  }
+  .hero-meta .m .k {
+    font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--ink-mute); font-weight: 700; margin-bottom: 8px;
+  }
+  .hero-meta .m .v {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 22px; color: var(--navy); letter-spacing: -0.01em;
+  }
+
+  .pages {
+    max-width: 1280px; margin: 0 auto; padding: 40px 40px 120px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 28px;
+  }
+  .page-card {
+    background: #fff; border: 1px solid var(--rule);
+    padding: 36px 32px 32px;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+    display: flex; flex-direction: column;
+    min-height: 360px;
+    text-decoration: none;
+  }
+  .page-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--coral);
+  }
+  .page-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--coral); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .page-card:hover::before { transform: scaleX(1); }
+  .page-card .stage-n {
+    font-family: 'Fraunces', serif; font-weight: 400; font-style: italic;
+    font-size: 18px; color: var(--coral);
+    margin-bottom: 10px;
+  }
+  .page-card .stage-label {
+    font-family: 'Inter', sans-serif; font-weight: 700;
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 22px;
+  }
+  .page-card h3 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 28px; line-height: 1.15; color: var(--navy);
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  .page-card p {
+    font-size: 15px; line-height: 1.55; color: var(--slate);
+    margin-bottom: 24px;
+  }
+  .page-card .go {
+    margin-top: auto;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Inter', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--navy);
+  }
+  .page-card .go .arr {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+    font-size: 20px; letter-spacing: 0; text-transform: none;
+    transition: transform 0.2s ease;
+  }
+  .page-card:hover .go { color: var(--coral); }
+  .page-card:hover .go .arr { transform: translateX(6px); }
+
+  /* Flow ribbon */
+  .flow-ribbon {
+    max-width: 1280px; margin: 0 auto;
+    padding: 0 40px 60px;
+  }
+  .flow-ribbon .ribbon-label {
+    font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--ink-mute); font-weight: 700; margin-bottom: 18px;
+  }
+  .flow-ribbon .ribbon {
+    display: flex; align-items: center; gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    font-family: 'Inter', sans-serif;
+  }
+  .flow-ribbon .node {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 10px 16px;
+    background: #fff; border: 1px solid var(--rule);
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    font-weight: 600; color: var(--navy);
+    white-space: nowrap;
+  }
+  .flow-ribbon .node .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--coral); }
+  .flow-ribbon .arr {
+    color: var(--coral); font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 22px;
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="bar-inner">
+    <a href="index.html" class="brand"><img class="mark" src="assets/lur-puzzle.svg" alt="LUR Growth" width="52" height="52"/><span class="name">LUR<br/>Growth</span></a>
+    <div class="bar-meta">
+      <span class="live">Funnel Review</span>
+      <span class="dot">·</span>
+      <span>Calm Infrastructure Intensive</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Webinar Funnel <span class="dot">·</span> v1 · May 2026 Launch</div>
+  <h1>The full <span class="italic">calm-infrastructure</span> funnel, end to end.</h1>
+  <p class="lede">Ten pages, one continuous visual language lifted from the webinar deck. A main path (landing → welcome) plus three downsell checkouts so no one leaves empty-handed. Open any page to see it live. This index is for review; prospects never see it.</p>
+
+  <div class="hero-meta">
+    <div class="m">
+      <div class="k">Offer</div>
+      <div class="v">Calm Infrastructure Intensive</div>
+    </div>
+    <div class="m">
+      <div class="k">Webinar</div>
+      <div class="v">May 21 · 12pm ET</div>
+    </div>
+    <div class="m">
+      <div class="k">Price</div>
+      <div class="v">$1,997 · 3 × $699</div>
+    </div>
+    <div class="m">
+      <div class="k">Guarantee</div>
+      <div class="v">30-day "Implement or refund"</div>
+    </div>
+  </div>
+</section>
+
+<div class="flow-ribbon">
+  <div class="ribbon-label">Prospect path</div>
+  <div class="ribbon">
+    <div class="node"><span class="dot"></span> Ad / Email</div>
+    <span class="arr">→</span>
+    <div class="node"><span class="dot"></span> Landing</div>
+    <span class="arr">→</span>
+    <div class="node"><span class="dot"></span> Thank-you</div>
+    <span class="arr">→</span>
+    <div class="node"><span class="dot"></span> Reminders</div>
+    <span class="arr">→</span>
+    <div class="node"><span class="dot"></span> Live Lobby</div>
+    <span class="arr">→</span>
+    <div class="node"><span class="dot"></span> Replay + Offer</div>
+    <span class="arr">→</span>
+    <div class="node"><span class="dot"></span> Checkout</div>
+    <span class="arr">→</span>
+    <div class="node"><span class="dot"></span> Welcome</div>
+  </div>
+</div>
+
+<section class="pages">
+  <a class="page-card" href="01-landing.html">
+    <div class="stage-n">Stage One</div>
+    <div class="stage-label">Registration</div>
+    <h3>Landing page</h3>
+    <p>Top-of-funnel registration. Hero, countdown, framework preview, host bio, what-you'll-learn, FAQ, inline form. High-conversion patterns, on-brand.</p>
+    <span class="go">Open page <span class="arr">→</span></span>
+  </a>
+
+  <a class="page-card" href="02-thank-you.html">
+    <div class="stage-n">Stage Two</div>
+    <div class="stage-label">Confirmation</div>
+    <h3>Thank-you page</h3>
+    <p>Registration confirmed. Calendar links, what to expect, add-to-calendar, pre-work prompt, social share. Primes the no-show rate down.</p>
+    <span class="go">Open page <span class="arr">→</span></span>
+  </a>
+
+  <a class="page-card" href="03-reminders.html">
+    <div class="stage-n">Stage Three</div>
+    <div class="stage-label">Nurture</div>
+    <h3>Email sequence preview</h3>
+    <p>Five-email warm-up in the inbox preview format. Each email designed to increase show-up and warm the prospect to the framework before the webinar.</p>
+    <span class="go">Open page <span class="arr">→</span></span>
+  </a>
+
+  <a class="page-card" href="04-lobby.html">
+    <div class="stage-n">Stage Four</div>
+    <div class="stage-label">Live</div>
+    <h3>Live webinar lobby</h3>
+    <p>Countdown-to-zero page shown 60 minutes before the webinar goes live. Room rules, what to bring, live chat teaser.</p>
+    <span class="go">Open page <span class="arr">→</span></span>
+  </a>
+
+  <a class="page-card" href="05-sales.html">
+    <div class="stage-n">Stage Five</div>
+    <div class="stage-label">Conversion</div>
+    <h3>Replay + Sales page</h3>
+    <p>The million-dollar page. Replay player, full value stack, bonuses, guarantee, testimonials, FAQ, price, scarcity, close. This is where conversion happens.</p>
+    <span class="go">Open page <span class="arr">→</span></span>
+  </a>
+
+  <a class="page-card" href="06-checkout.html">
+    <div class="stage-n">Stage Six</div>
+    <div class="stage-label">Transaction</div>
+    <h3>Checkout page</h3>
+    <p>Two-column checkout: order summary with the value stack visible on the right, payment on the left. Bump offer. Trust bar. No surprises.</p>
+    <span class="go">Open page <span class="arr">→</span></span>
+  </a>
+
+  <a class="page-card" href="07-welcome.html">
+    <div class="stage-n">Stage Seven</div>
+    <div class="stage-label">Onboarding</div>
+    <h3>Post-purchase welcome</h3>
+    <p>Purchase confirmed. Here's your Day 1. Access to the member portal, next steps, office-hours calendar, onboarding checklist.</p>
+    <span class="go">Open page <span class="arr">→</span></span>
+  </a>
+</section>
+
+<section class="hero" style="padding: 40px 40px 30px;">
+  <div class="eyebrow" style="margin-bottom: 20px;">Downsell paths <span class="dot">·</span> For leaders not ready for the full Intensive</div>
+  <h2 style="font-family: 'Fraunces', serif; font-weight: 600; font-size: 44px; line-height: 1.05; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 14px; text-wrap: balance; max-width: 840px;">Three <span class="italic" style="font-style: italic; font-weight: 400; color: var(--coral);">bump-down</span> checkouts so nobody leaves empty-handed.</h2>
+  <p class="lede" style="max-width: 720px;">Surfaced on the sales page between testimonials and the final CTA. Each link from the sales page lands on a dedicated, on-brand standalone checkout.</p>
+</section>
+
+<section class="pages">
+  <a class="page-card" href="06b-checkout-course.html">
+    <div class="stage-n">Downsell A</div>
+    <div class="stage-label">Course · $1,297</div>
+    <h3>AI Integration course · Standalone</h3>
+    <p>CPD-accredited six-module program. Lifetime access. Full framework, six organizational deliverables, certificate. Pay once or 2 × $697. Upgrade credit to the Intensive within 12 months.</p>
+    <span class="go">Open page <span class="arr">→</span></span>
+  </a>
+
+  <a class="page-card" href="06c-checkout-storm.html">
+    <div class="stage-n">Downsell B</div>
+    <div class="stage-label">Course · $797</div>
+    <h3>Lead Through the Storm · Standalone</h3>
+    <p>CPD-accredited five-module program for leading without burning out. Guided meditations, reflection workbooks, certificate. Pay once or 2 × $427. Works on its own or alongside the AI course.</p>
+    <span class="go">Open page <span class="arr">→</span></span>
+  </a>
+
+  <a class="page-card" href="06d-checkout-skool.html">
+    <div class="stage-n">Downsell C</div>
+    <div class="stage-label">Community · $97/mo</div>
+    <h3>The Calm Infrastructure Lab · Skool</h3>
+    <p>Monthly community with both course content libraries, template packs, monthly live sessions with Latoya, office hours, and peer nonprofit leaders. 7-day free trial, cancel anytime.</p>
+    <span class="go">Open page <span class="arr">→</span></span>
+  </a>
+</section>
+
+<footer class="foot-chrome">
+  <div class="foot-inner">
+    <div>
+      <div class="foot-brand"><img class="mark foot-mark" src="assets/lur-puzzle.svg" alt="" width="64" height="64"/><span class="wm">LUR <span class="italic">Growth</span></span></div>
+      <div class="foot-note" style="margin-top: 14px;">Calm infrastructure for nonprofit leaders integrating AI with care. Funnel built in the house style of the AI Integration Webinar deck.</div>
+    </div>
+    <div class="foot-links">
+      <a href="01-landing.html">Landing</a>
+      <a href="05-sales.html">Sales</a>
+      <a href="07-welcome.html">Welcome</a>
+      <a href="06b-checkout-course.html">Course</a>
+      <a href="06c-checkout-storm.html">Storm</a>
+      <a href="06d-checkout-skool.html">Lab</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

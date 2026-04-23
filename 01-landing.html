@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Integration for Nonprofit Leaders, Free Live Webinar · May 21</title>
+<link rel="stylesheet" href="styles/funnel.css?v=2"/>
+<style>
+  /* ── Hero ─────────────────────────────────────────── */
+  .hero {
+    background: var(--navy);
+    color: #fff;
+    padding: 60px 40px 90px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero .bg-strata {
+    position: absolute; inset: 0; z-index: 0; opacity: 0.18;
+    background:
+      radial-gradient(1400px 600px at 85% 10%, rgba(91,185,176,0.22), transparent 60%),
+      radial-gradient(900px 500px at 10% 90%, rgba(253,157,125,0.18), transparent 60%);
+  }
+  .hero .hero-inner {
+    position: relative; z-index: 1;
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.3fr 1fr;
+    gap: 80px; align-items: center;
+    padding-top: 40px;
+  }
+  .hero .hero-left .date-chip {
+    display: inline-flex; align-items: center; gap: 14px;
+    padding: 10px 18px;
+    background: rgba(91,185,176,0.14);
+    border: 1px solid rgba(91,185,176,0.55);
+    color: var(--teal);
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 12px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    border-radius: 2px;
+    margin-bottom: 30px;
+  }
+  .hero .hero-left .date-chip .live-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--coral);
+    box-shadow: 0 0 0 4px rgba(253,157,125,0.28);
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 82px; line-height: 0.98; letter-spacing: -0.025em;
+    color: #fff; margin-bottom: 24px;
+    text-wrap: balance;
+  }
+  .hero h1 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .hero .sub {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+    font-size: 26px; line-height: 1.4; color: var(--coral);
+    max-width: 580px; margin-bottom: 28px;
+  }
+  .hero .lede {
+    font-size: 20px; line-height: 1.55; color: rgba(255,255,255,0.78);
+    max-width: 580px; margin-bottom: 36px;
+  }
+  .hero .meta-line {
+    display: flex; gap: 30px; flex-wrap: wrap;
+    margin-bottom: 40px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    position: relative;
+  }
+  .hero .meta-line::before {
+    content: ''; position: absolute; top: -2px; left: 0;
+    width: 72px; height: 3px; background: var(--coral);
+  }
+  .hero .meta-line .m .k {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45); font-weight: 700; margin-bottom: 6px;
+  }
+  .hero .meta-line .m .v {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 18px; color: #fff; letter-spacing: -0.005em;
+  }
+
+  /* ── Hero right: reg card ─────────────────────────── */
+  .reg-card {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-top: 3px solid var(--coral);
+    padding: 40px 36px 36px;
+    position: relative;
+  }
+  .reg-card h3 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 30px; line-height: 1.1; color: #fff;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+  }
+  .reg-card .reg-sub {
+    font-size: 14px; color: rgba(255,255,255,0.6);
+    margin-bottom: 24px;
+  }
+  .reg-card .field {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.2);
+    color: #fff;
+  }
+  .reg-card .field::placeholder { color: rgba(255,255,255,0.4); }
+  .reg-card .field-label { color: rgba(255,255,255,0.6); }
+  .reg-card .field:focus { border-color: var(--coral); background: rgba(255,255,255,0.1); }
+  .reg-card .trust-row {
+    display: flex; gap: 18px; margin-top: 18px;
+    font-size: 12px; color: rgba(255,255,255,0.55);
+  }
+  .reg-card .trust-row .chk { color: var(--teal); margin-right: 6px; }
+  .reg-card .countdown-block {
+    margin-top: 26px; padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+  }
+  .reg-card .countdown-block .cd-label {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45); font-weight: 700; margin-bottom: 14px;
+  }
+  .reg-card .countdown { justify-content: center; display: flex; }
+
+  /* ── Bar: you'll learn ──────────────────────────── */
+  .learn-bar {
+    background: var(--paper); padding: 80px 40px;
+  }
+  .learn-bar .inner {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+  .learn-card {
+    background: #fff; border: 1px solid var(--rule);
+    padding: 36px 30px 32px;
+    position: relative;
+    min-height: 280px;
+    display: flex; flex-direction: column;
+  }
+  .learn-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--coral);
+  }
+  .learn-card.t2::before { background: var(--teal); }
+  .learn-card.t3::before { background: var(--green); }
+  .learn-card .num {
+    font-family: 'Fraunces', serif; font-weight: 400; font-style: italic;
+    font-size: 32px; color: var(--coral); margin-bottom: 12px; line-height: 1;
+  }
+  .learn-card.t2 .num { color: var(--teal); }
+  .learn-card.t3 .num { color: var(--green); }
+  .learn-card h4 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 26px; line-height: 1.18; color: var(--navy);
+    margin-bottom: 12px; letter-spacing: -0.01em;
+  }
+  .learn-card p {
+    font-size: 16px; line-height: 1.55; color: var(--slate);
+  }
+
+  /* ── Framework preview ──────────────────────────── */
+  .framework-section {
+    padding: 120px 40px; max-width: 1280px; margin: 0 auto;
+  }
+  .framework-section .fw-head {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px;
+    align-items: end; margin-bottom: 60px;
+  }
+  .framework-section h2 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 60px; line-height: 1.02; letter-spacing: -0.02em;
+    color: var(--navy); text-wrap: balance;
+  }
+  .framework-section h2 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .framework-section .fw-head .body {
+    font-size: 19px; line-height: 1.55; color: var(--slate); max-width: 480px;
+  }
+
+  .layers {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .layer {
+    background: #fff; border: 1px solid var(--rule);
+    border-left: 5px solid var(--coral);
+    padding: 34px 32px;
+  }
+  .layer.l2 { border-left-color: var(--teal); }
+  .layer.l3 { border-left-color: var(--green); }
+  .layer .l-num {
+    font-family: 'Fraunces', serif; font-weight: 400; font-style: italic;
+    font-size: 40px; color: var(--coral); line-height: 1; margin-bottom: 14px;
+  }
+  .layer.l2 .l-num { color: var(--teal); }
+  .layer.l3 .l-num { color: var(--green); }
+  .layer .l-label {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--ink-mute); font-weight: 700; margin-bottom: 10px;
+  }
+  .layer h4 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 26px; line-height: 1.15; color: var(--navy);
+    margin-bottom: 12px; letter-spacing: -0.01em;
+  }
+  .layer p { font-size: 15px; line-height: 1.55; color: var(--slate); }
+
+  /* ── Host section ──────────────────────────────── */
+  .host-section {
+    background: var(--paper); padding: 100px 40px;
+  }
+  .host-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: grid; grid-template-columns: 380px 1fr;
+    gap: 70px; align-items: center;
+  }
+  .host-photo {
+    width: 100%; aspect-ratio: 3/4;
+    background: var(--navy);
+    overflow: hidden; position: relative;
+    border: 1px solid var(--rule);
+  }
+  .host-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .host-photo::after {
+    content: ''; position: absolute; bottom: -14px; left: -14px;
+    width: 90px; height: 90px; background: var(--coral);
+    z-index: -1;
+  }
+  .host-copy .eyebrow { margin-bottom: 18px; }
+  .host-copy h2 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 52px; line-height: 1.05; color: var(--navy);
+    letter-spacing: -0.018em; margin-bottom: 24px;
+    text-wrap: balance;
+  }
+  .host-copy h2 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .host-copy p { font-size: 18px; line-height: 1.6; color: var(--slate); margin-bottom: 14px; }
+  .host-copy p strong { color: var(--navy); font-weight: 600; }
+  .host-copy .sig {
+    margin-top: 24px; font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 22px; color: var(--navy);
+  }
+
+  /* ── Who-this-is-for (two-col) ──────────────────── */
+  .who-section {
+    padding: 100px 40px; max-width: 1280px; margin: 0 auto;
+  }
+  .who-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 40px; margin-top: 48px;
+  }
+  .who-col {
+    padding: 44px 40px;
+    background: #fff; border: 1px solid var(--rule);
+    position: relative;
+  }
+  .who-col.yes { border-top: 3px solid var(--teal); }
+  .who-col.no { border-top: 3px solid var(--coral-deep); }
+  .who-col .label {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    font-weight: 700; margin-bottom: 14px;
+  }
+  .who-col.yes .label { color: var(--teal-deep); }
+  .who-col.no .label { color: var(--coral-deep); }
+  .who-col h3 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 30px; color: var(--navy); margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+  .who-col ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .who-col li {
+    display: flex; gap: 14px; align-items: flex-start;
+    font-size: 17px; line-height: 1.5; color: var(--slate);
+  }
+  .who-col li::before {
+    content: ''; width: 14px; height: 14px; border-radius: 50%;
+    flex-shrink: 0; margin-top: 5px;
+  }
+  .who-col.yes li::before { background: var(--teal); }
+  .who-col.no li::before {
+    background: transparent; border: 1.5px solid var(--coral-deep);
+    position: relative;
+  }
+
+  /* ── Social proof strip ────────────────────────── */
+  .proof-strip {
+    background: var(--navy-dark); color: #fff;
+    padding: 80px 40px;
+  }
+  .proof-strip .inner {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px; align-items: center;
+  }
+  .proof-strip .stat-big {
+    text-align: left;
+  }
+  .proof-strip .stat-big .n {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 78px; line-height: 1; color: var(--coral);
+    letter-spacing: -0.03em; margin-bottom: 10px;
+  }
+  .proof-strip .stat-big .n .pct { font-size: 40px; vertical-align: top; font-weight: 400; }
+  .proof-strip .stat-big .l {
+    font-size: 14px; line-height: 1.4; color: rgba(255,255,255,0.7);
+    max-width: 320px;
+  }
+  .proof-strip .stat-big.teal .n { color: var(--teal); }
+  .proof-strip .stat-big.green .n { color: var(--green); }
+
+  /* ── VSL section ──────────────────────────── */
+  .vsl-section {
+    background: var(--navy);
+    padding: 20px 40px 110px;
+    position: relative;
+  }
+  .vsl-section::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(1100px 500px at 50% 100%, rgba(91,185,176,0.14), transparent 60%);
+    pointer-events: none;
+  }
+  .vsl-inner {
+    max-width: 1180px; margin: 0 auto;
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1.6fr;
+    gap: 50px; align-items: center;
+  }
+  .vsl-copy .eyebrow {
+    color: var(--coral); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .vsl-copy .eyebrow::before {
+    content: ''; width: 28px; height: 1px; background: var(--coral);
+  }
+  .vsl-copy h2 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 44px; line-height: 1.03; color: #fff;
+    letter-spacing: -0.018em; margin-bottom: 20px;
+    text-wrap: balance;
+  }
+  .vsl-copy h2 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .vsl-copy p {
+    font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.75);
+    margin-bottom: 28px; max-width: 440px;
+  }
+  .vsl-chapters { list-style: none; padding: 0; margin: 0; }
+  .vsl-chapters li {
+    display: grid; grid-template-columns: 56px 1fr;
+    gap: 16px; align-items: baseline;
+    padding: 14px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    transition: padding-left 0.2s ease;
+  }
+  .vsl-chapters li:last-child { border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .vsl-chapters li:hover { padding-left: 8px; }
+  .vsl-chapters li:hover .ch-title { color: var(--coral); }
+  .vsl-chapters .ch-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--teal); letter-spacing: 0.05em;
+    font-variant-numeric: tabular-nums;
+  }
+  .vsl-chapters .ch-title {
+    font-family: 'Fraunces', serif; font-weight: 500;
+    font-size: 16px; color: #fff; letter-spacing: -0.005em;
+    transition: color 0.2s ease;
+  }
+
+  .vsl-player {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: #0a1520;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-top: 3px solid var(--coral);
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 40px 80px -20px rgba(0,0,0,0.5);
+  }
+  .vsl-player .poster {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(135deg, rgba(15,35,55,0.55), rgba(15,35,55,0.85)),
+      url('assets/latoya-headshot.jpg') center 30% / cover;
+  }
+  .vsl-player .poster::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(600px 400px at 30% 40%, rgba(253,157,125,0.18), transparent 60%),
+      linear-gradient(to top, rgba(15,35,55,0.85), transparent 40%);
+  }
+  .vsl-player .play-btn {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 92px; height: 92px; border-radius: 50%;
+    background: var(--coral); color: var(--navy-dark);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 3;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 20px 50px rgba(253,157,125,0.4);
+  }
+  .vsl-player:hover .play-btn {
+    transform: translate(-50%, -50%) scale(1.08);
+    box-shadow: 0 25px 60px rgba(253,157,125,0.55);
+  }
+  .vsl-player .play-btn::before {
+    content: ''; width: 0; height: 0;
+    border-left: 22px solid var(--navy-dark);
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    margin-left: 6px;
+  }
+  .vsl-player .play-btn::after {
+    content: ''; position: absolute; inset: -10px;
+    border-radius: 50%; border: 1px solid rgba(253,157,125,0.5);
+    animation: pulse-ring 2.2s ease-out infinite;
+  }
+  @keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  .vsl-player .badge-tr {
+    position: absolute; top: 20px; right: 20px; z-index: 2;
+    background: rgba(15,35,55,0.85); backdrop-filter: blur(8px);
+    padding: 8px 14px;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 700; color: var(--teal);
+    border: 1px solid rgba(91,185,176,0.4);
+  }
+  .vsl-player .badge-tl {
+    position: absolute; top: 20px; left: 20px; z-index: 2;
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(15,35,55,0.85); backdrop-filter: blur(8px);
+    padding: 8px 14px;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 700; color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .vsl-player .badge-tl .rec {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--coral);
+    box-shadow: 0 0 0 3px rgba(253,157,125,0.3);
+  }
+
+  .vsl-player .caption-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    z-index: 2;
+    padding: 22px 26px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 20px;
+  }
+  .vsl-player .vsl-title {
+    font-family: 'Fraunces', serif; font-weight: 500; font-style: italic;
+    font-size: 22px; color: #fff; letter-spacing: -0.005em;
+    max-width: 460px; line-height: 1.3;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  }
+  .vsl-player .vsl-meta {
+    display: flex; gap: 16px; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: rgba(255,255,255,0.8);
+    letter-spacing: 0.05em;
+  }
+  .vsl-player .vsl-meta .cc {
+    padding: 4px 7px; border: 1px solid rgba(255,255,255,0.3);
+    font-size: 10px;
+  }
+
+  .vsl-player .scrub {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: rgba(255,255,255,0.15); z-index: 3;
+  }
+  .vsl-player .scrub::before {
+    content: ''; position: absolute; top: 0; left: 0; height: 100%;
+    width: 0; background: var(--coral);
+    animation: vsl-progress 8s linear infinite;
+  }
+  @keyframes vsl-progress {
+    0% { width: 0; }
+    100% { width: 100%; }
+  }
+
+  .vsl-proof-row {
+    margin-top: 26px;
+    display: flex; align-items: center; gap: 20px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .vsl-proof-row .avatars { display: flex; }
+  .vsl-proof-row .avatars .av {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--coral));
+    color: var(--navy-dark); display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 11px;
+    border: 2px solid var(--navy); margin-left: -8px;
+  }
+  .vsl-proof-row .avatars .av:first-child { margin-left: 0; }
+  .vsl-proof-row .pr-text {
+    font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.45;
+  }
+  .vsl-proof-row .pr-text strong { color: #fff; font-weight: 600; }
+
+  @media (max-width: 900px) {
+    .vsl-inner { grid-template-columns: 1fr; gap: 36px; }
+    .vsl-copy h2 { font-size: 32px; }
+    .vsl-player .vsl-title { font-size: 16px; }
+    .vsl-player .play-btn { width: 70px; height: 70px; }
+  }
+
+  /* ── VSL Modal ──────────────────────────────── */
+  .vsl-modal {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(8,20,30,0.92);
+    backdrop-filter: blur(8px);
+    display: none; align-items: center; justify-content: center;
+    padding: 40px;
+    animation: modal-in 0.3s ease;
+  }
+  .vsl-modal.open { display: flex; }
+  @keyframes modal-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .vsl-modal-inner {
+    width: 100%; max-width: 1080px;
+    position: relative;
+  }
+  .vsl-modal-close {
+    position: absolute; top: -50px; right: 0;
+    background: transparent; border: 1px solid rgba(255,255,255,0.3);
+    color: #fff; padding: 10px 18px;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 700; cursor: pointer;
+    font-family: 'Inter', sans-serif;
+  }
+  .vsl-modal-close:hover { background: var(--coral); color: var(--navy-dark); border-color: var(--coral); }
+  .vsl-modal-frame {
+    aspect-ratio: 16/9;
+    background: #0a1520;
+    border: 1px solid rgba(255,255,255,0.2);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.6);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase;
+  }
+  .vsl-modal-frame .mock-bars {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(135deg, rgba(15,35,55,0.55), rgba(15,35,55,0.9)),
+      url('assets/latoya-headshot.jpg') center 30% / cover;
+  }
+  .vsl-modal-frame .mock-msg {
+    position: relative; z-index: 1;
+    background: rgba(8,20,30,0.8); padding: 20px 30px;
+    border: 1px solid rgba(91,185,176,0.3);
+    color: var(--teal);
+    text-align: center;
+  }
+  .vsl-modal-frame .mock-msg .big {
+    font-family: 'Fraunces', serif; font-size: 22px; font-style: italic;
+    color: #fff; letter-spacing: -0.01em; text-transform: none;
+    margin-bottom: 10px;
+  }
+  .vsl-modal-cap {
+    margin-top: 16px; color: rgba(255,255,255,0.6);
+    font-size: 13px; text-align: center;
+  }
+
+  /* ── Trust bar (as seen in) ──────────────────────── */
+  .trust-bar {
+    background: var(--paper);
+    padding: 40px 40px 44px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .trust-bar .tb-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: auto 1fr; gap: 50px; align-items: center;
+  }
+  .trust-bar .tb-label {
+    font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+    font-weight: 700; color: var(--ink-mute);
+    max-width: 180px; line-height: 1.5;
+  }
+  .trust-bar .tb-label strong {
+    color: var(--navy); display: block; font-size: 13px; margin-bottom: 4px;
+  }
+  .trust-bar .tb-logos {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 30px; flex-wrap: wrap;
+    padding-left: 40px;
+    border-left: 1px solid var(--rule);
+  }
+  .trust-bar .tb-logo {
+    font-family: 'Fraunces', serif; font-weight: 500;
+    font-size: 20px; color: var(--slate);
+    letter-spacing: -0.01em;
+    opacity: 0.75;
+    transition: opacity 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+  }
+  .trust-bar .tb-logo:hover { opacity: 1; color: var(--navy); }
+  .trust-bar .tb-logo .alt { font-style: italic; font-weight: 400; }
+  .trust-bar .tb-logo.mono {
+    font-family: 'Inter', sans-serif; font-weight: 700;
+    font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+
+  /* ── Social proof toast ──────────────────────────── */
+  .sp-toast {
+    position: fixed; bottom: 24px; left: 24px; z-index: 900;
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--coral);
+    padding: 14px 20px 14px 16px;
+    box-shadow: 0 16px 40px -10px rgba(15,35,55,0.25);
+    display: flex; align-items: center; gap: 14px;
+    max-width: 360px;
+    transform: translateX(-120%); opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .sp-toast.show { transform: translateX(0); opacity: 1; pointer-events: auto; }
+  .sp-toast .sp-av {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--coral));
+    color: var(--navy-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 14px;
+    flex-shrink: 0;
+  }
+  .sp-toast .sp-body { line-height: 1.35; }
+  .sp-toast .sp-body .t {
+    font-size: 13px; color: var(--navy); font-weight: 600;
+  }
+  .sp-toast .sp-body .t .name { color: var(--coral); }
+  .sp-toast .sp-body .sub {
+    font-size: 11px; color: var(--ink-mute); margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
+  .sp-toast .sp-body .sub .tick {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--teal); margin-right: 5px;
+    vertical-align: middle;
+  }
+  .sp-toast .sp-close {
+    position: absolute; top: 6px; right: 8px;
+    background: none; border: none; color: var(--ink-mute);
+    font-size: 16px; cursor: pointer; line-height: 1;
+    padding: 2px 6px;
+  }
+
+  /* ── Exit intent modal ──────────────────────────── */
+  .exit-modal {
+    position: fixed; inset: 0; z-index: 1100;
+    background: rgba(8,20,30,0.85);
+    backdrop-filter: blur(10px);
+    display: none; align-items: center; justify-content: center;
+    padding: 40px;
+    animation: fade-in 0.25s ease;
+  }
+  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+  .exit-modal.open { display: flex; }
+  .exit-modal-inner {
+    width: 100%; max-width: 640px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-top: 4px solid var(--coral);
+    padding: 50px 54px 44px;
+    position: relative;
+    box-shadow: 0 40px 100px -20px rgba(0,0,0,0.5);
+  }
+  .exit-modal-close {
+    position: absolute; top: 16px; right: 18px;
+    background: transparent; border: none;
+    color: var(--ink-mute);
+    font-size: 22px; cursor: pointer; line-height: 1;
+    padding: 8px 12px;
+  }
+  .exit-modal-close:hover { color: var(--navy); }
+  .exit-modal .em-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+    font-weight: 700; color: var(--coral);
+    margin-bottom: 18px;
+  }
+  .exit-modal .em-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--coral); }
+  .exit-modal h3 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 38px; line-height: 1.05; color: var(--navy);
+    letter-spacing: -0.018em; margin-bottom: 14px;
+    text-wrap: balance;
+  }
+  .exit-modal h3 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .exit-modal p {
+    font-size: 16px; line-height: 1.55; color: var(--slate);
+    margin-bottom: 26px; max-width: 520px;
+  }
+  .exit-modal .em-form {
+    display: grid; grid-template-columns: 1fr auto; gap: 10px;
+  }
+  .exit-modal .em-form input {
+    padding: 16px 18px;
+    background: #fff;
+    border: 1px solid var(--rule);
+    font-size: 15px; color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .exit-modal .em-form input:focus { border-color: var(--coral); }
+  .exit-modal .em-form button {
+    padding: 16px 26px;
+    background: var(--navy); color: #fff;
+    border: none; cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    font-weight: 700;
+    transition: background 0.2s ease;
+  }
+  .exit-modal .em-form button:hover { background: var(--coral); color: var(--navy-dark); }
+  .exit-modal .em-fine {
+    margin-top: 16px;
+    font-size: 12px; color: var(--ink-mute); line-height: 1.5;
+  }
+  .exit-modal .em-fine a { color: var(--coral); text-decoration: underline; cursor: pointer; }
+
+  @media (max-width: 900px) {
+    .trust-bar .tb-inner { grid-template-columns: 1fr; gap: 24px; }
+    .trust-bar .tb-logos { padding-left: 0; border-left: none; border-top: 1px solid var(--rule); padding-top: 24px; }
+    .exit-modal-inner { padding: 36px 28px 32px; }
+    .exit-modal h3 { font-size: 28px; }
+    .exit-modal .em-form { grid-template-columns: 1fr; }
+    .sp-toast { left: 12px; right: 12px; bottom: 12px; max-width: none; }
+  }
+
+  .quote-strip {
+    padding: 100px 40px; max-width: 1100px; margin: 0 auto; text-align: center;
+  }
+  .quote-strip .q-mark {
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 80px;
+    color: var(--coral); line-height: 0.6; margin-bottom: 10px;
+  }
+  .quote-strip .pq {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+    font-size: 34px; line-height: 1.4; color: var(--navy);
+    text-wrap: balance;
+    margin-bottom: 30px;
+  }
+  .quote-strip .pq-cite {
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-mute); font-weight: 700;
+  }
+
+  /* ── FAQ ──────────────────────────────────────── */
+  .faq-section {
+    padding: 100px 40px; max-width: 920px; margin: 0 auto;
+  }
+  .faq-section h2 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 52px; color: var(--navy); margin-bottom: 48px;
+    letter-spacing: -0.018em;
+    text-align: center;
+  }
+  .faq-section h2 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .faq-item {
+    border-top: 1px solid var(--rule);
+    padding: 26px 0;
+    cursor: pointer;
+  }
+  .faq-item:last-of-type { border-bottom: 1px solid var(--rule); }
+  .faq-item .q {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 30px;
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 22px; color: var(--navy); letter-spacing: -0.005em;
+  }
+  .faq-item .plus {
+    font-family: 'Fraunces', serif; font-weight: 400; font-style: italic;
+    font-size: 26px; color: var(--coral);
+    transition: transform 0.25s ease;
+  }
+  .faq-item.open .plus { transform: rotate(45deg); }
+  .faq-item .a {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.3s ease, margin-top 0.3s ease;
+  }
+  .faq-item.open .a { max-height: 400px; margin-top: 14px; }
+  .faq-item .a p {
+    font-size: 16px; line-height: 1.6; color: var(--slate);
+    max-width: 700px;
+  }
+
+  /* ── Final CTA ────────────────────────────────── */
+  .final-cta {
+    background: var(--navy); color: #fff;
+    padding: 110px 40px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .final-cta::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(800px 400px at 50% 120%, rgba(253,157,125,0.22), transparent 70%);
+  }
+  .final-cta .inner { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; }
+  .final-cta h2 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 64px; line-height: 1.04; color: #fff;
+    letter-spacing: -0.02em; margin-bottom: 26px;
+    text-wrap: balance;
+  }
+  .final-cta h2 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .final-cta .fc-sub {
+    font-size: 19px; color: rgba(255,255,255,0.78);
+    margin-bottom: 36px; max-width: 640px; margin-left: auto; margin-right: auto;
+  }
+  .final-cta .fc-micro {
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45); font-weight: 600; margin-top: 26px;
+  }
+
+  @media (max-width: 900px) {
+    .hero .hero-inner { grid-template-columns: 1fr; gap: 50px; }
+    .hero h1 { font-size: 48px; }
+    .learn-bar .inner { grid-template-columns: 1fr; }
+    .framework-section .fw-head { grid-template-columns: 1fr; gap: 30px; }
+    .framework-section h2 { font-size: 40px; }
+    .layers { grid-template-columns: 1fr; }
+    .host-inner { grid-template-columns: 1fr; gap: 40px; }
+    .proof-strip .inner { grid-template-columns: 1fr; gap: 40px; }
+    .who-grid { grid-template-columns: 1fr; }
+    .quote-strip .pq { font-size: 24px; }
+    .final-cta h2 { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="bar-inner" style="padding: 18px 40px; display: flex; justify-content: space-between; align-items: center; max-width: 1280px; margin: 0 auto; width: 100%;">
+    <a href="index.html" class="brand"><img class="mark" src="assets/lur-puzzle.svg" alt="LUR Growth" width="52" height="52"/><span class="name">LUR<br/>Growth</span></a>
+    <div class="bar-meta">
+      <span class="live">Live May 21</span>
+      <span class="dot">·</span>
+      <span>12pm ET · Free</span>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════ HERO ════════════════════════ -->
+<section class="hero">
+  <div class="bg-strata"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="date-chip">
+        <span class="live-dot"></span>
+        Live Webinar · May 21 · 12 PM ET · Replay Included
+      </div>
+      <div data-headline="a">
+        <h1>AI integration for nonprofits, built on <span class="italic">calm infrastructure</span>, not hype.</h1>
+      </div>
+      <div data-headline="b" style="display:none;">
+        <h1>The <span class="italic">three-layer framework</span> nonprofit leaders are using to integrate AI without losing their voice.</h1>
+      </div>
+      <div data-headline="c" style="display:none;">
+        <h1>Return <span class="italic">156 hours</span> to your team this year, without adding a single tool.</h1>
+      </div>
+      <p class="sub">A free 90-minute live webinar for nonprofit executives and directors.</p>
+      <p class="lede">Two live walkthroughs. One framework you can run on Monday. Built for leaders tired of AI slop, demo-ware, and "transformation" decks that never ship.</p>
+
+      <div class="meta-line">
+        <div class="m">
+          <div class="k">Date</div>
+          <div class="v">Thursday · May 21</div>
+        </div>
+        <div class="m">
+          <div class="k">Time</div>
+          <div class="v">12:00 PM ET · 90 min</div>
+        </div>
+        <div class="m">
+          <div class="k">Format</div>
+          <div class="v">Live · Zoom · Replay</div>
+        </div>
+        <div class="m">
+          <div class="k">Cost</div>
+          <div class="v" style="color: var(--coral);">Free</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <form class="reg-card" id="reg-form">
+        <h3>Save your seat</h3>
+        <p class="reg-sub">Register once. We'll send the Zoom link, a calendar invite, and the replay.</p>
+
+        <div class="field-group">
+          <label class="field-label">First name</label>
+          <input type="text" class="field" data-validate="required" placeholder="Maya"/>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Work email</label>
+          <input type="email" class="field" data-validate="email" placeholder="you@yournonprofit.org"/>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Organization</label>
+          <input type="text" class="field" data-validate="required" placeholder="Holloway Literacy Foundation"/>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Role</label>
+          <select class="field" data-validate="required">
+            <option value="">Select your role</option>
+            <option>Executive Director / CEO</option>
+            <option>Development Director</option>
+            <option>Operations / COO</option>
+            <option>Communications Director</option>
+            <option>Program Director</option>
+            <option>Board Member</option>
+            <option>Consultant to nonprofits</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block">
+          Save my seat <span class="arrow">→</span>
+        </button>
+
+        <div class="trust-row">
+          <span><span class="chk">✓</span>No pitch for 60 minutes</span>
+          <span><span class="chk">✓</span>Replay included</span>
+        </div>
+
+        <div class="countdown-block" data-urgency-only>
+          <div class="cd-label">Webinar begins in</div>
+          <div class="countdown" id="hero-countdown">
+            <div class="unit"><div class="n" data-c="d">00</div><div class="l">Days</div></div>
+            <div class="unit"><div class="n" data-c="h">00</div><div class="l">Hours</div></div>
+            <div class="unit"><div class="n" data-c="m">00</div><div class="l">Mins</div></div>
+            <div class="unit"><div class="n" data-c="s">00</div><div class="l">Secs</div></div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ Trust bar ════════════════════════ -->
+<section class="trust-bar">
+  <div class="tb-inner">
+    <div class="tb-label"><strong>Trusted by leaders at</strong>Nonprofits shipping calm AI workflows</div>
+    <div class="tb-logos">
+      <div class="tb-logo">North<span class="alt">Star</span> Literacy</div>
+      <div class="tb-logo mono">Harbor Works</div>
+      <div class="tb-logo">Greenline <span class="alt">Collective</span></div>
+      <div class="tb-logo mono">The Commons Fund</div>
+      <div class="tb-logo">Foresight <span class="alt">Aid</span></div>
+      <div class="tb-logo mono">Mercy &amp; Moss</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ VSL ════════════════════════ -->
+<section class="vsl-section">
+  <div class="vsl-inner">
+    <div class="vsl-copy">
+      <div class="eyebrow">90-second story</div>
+      <h2>Watch why <span class="italic">21 nonprofits</span> stopped running pilots and started shipping workflows.</h2>
+      <p>Before you register, a short video from Latoya on what "calm infrastructure" means, the three-layer framework, and what you'll leave the session with.</p>
+      <ul class="vsl-chapters">
+        <li data-ch="0">
+          <div class="ch-time">00:00</div>
+          <div class="ch-title">The cost of the old way</div>
+        </li>
+        <li data-ch="22">
+          <div class="ch-time">00:22</div>
+          <div class="ch-title">What calm infrastructure actually is</div>
+        </li>
+        <li data-ch="48">
+          <div class="ch-time">00:48</div>
+          <div class="ch-title">The three layers, in one minute</div>
+        </li>
+        <li data-ch="75">
+          <div class="ch-time">01:15</div>
+          <div class="ch-title">What you'll walk away with</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="vsl-right">
+      <div class="vsl-player" id="vsl-player" role="button" tabindex="0" aria-label="Play video: 90-second story from Latoya">
+        <div class="poster"></div>
+        <div class="badge-tl"><span class="rec"></span>Hosted by Latoya</div>
+        <div class="badge-tr">1:28 · Watch first</div>
+        <div class="play-btn" aria-hidden="true"></div>
+        <div class="caption-bar">
+          <div class="vsl-title">"Here's the shortest honest pitch I can make for the next 90 minutes of your time."</div>
+          <div class="vsl-meta">
+            <span class="cc">CC</span>
+            <span>HD</span>
+          </div>
+        </div>
+        <div class="scrub"></div>
+      </div>
+
+      <div class="vsl-proof-row">
+        <div class="avatars">
+          <div class="av">PK</div>
+          <div class="av">MD</div>
+          <div class="av">AR</div>
+          <div class="av">BL</div>
+          <div class="av">JR</div>
+        </div>
+        <div class="pr-text"><strong>2,847 leaders</strong> have watched this video. <strong>74%</strong> registered right after.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ LEARN (three cards) ════════════════════════ -->
+<section class="learn-bar">
+  <div class="inner">
+    <div class="learn-card t1">
+      <div class="num">01</div>
+      <h4>The three-layer framework in 15 minutes</h4>
+      <p>Comms, Ops, Programs, where AI belongs at each layer, and the one question that tells you when to stop before it hurts you.</p>
+    </div>
+    <div class="learn-card t2">
+      <div class="num">02</div>
+      <h4>Two live walkthroughs, not slideware</h4>
+      <p>Watch a grant capture flow from blank to draft in 25 minutes. Watch three donor deliverables from one record in under 10.</p>
+    </div>
+    <div class="learn-card t3">
+      <div class="num">03</div>
+      <h4>The self-assessment you'll run Monday</h4>
+      <p>Five questions. Pick one workflow. Design it once, run it a hundred times. Year-one compound: 156 hours returned.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ FRAMEWORK ════════════════════════ -->
+<section class="framework-section">
+  <div class="fw-head">
+    <div>
+      <div class="eyebrow">The Framework <span class="dot">·</span> Three Layers</div>
+      <h2 style="margin-top: 18px;">Most nonprofits don't need more AI.<br/>They need <span class="italic">infrastructure</span> around it.</h2>
+    </div>
+    <div class="body">
+      Buying another tool won't fix a workflow no one has had time to design. The three-layer framework shows where AI earns its place, and where it quietly erodes trust.
+    </div>
+  </div>
+
+  <div class="layers">
+    <div class="layer l1">
+      <div class="l-num">01</div>
+      <div class="l-label">Communications</div>
+      <h4>Start here. Low risk, high clarity.</h4>
+      <p>Voice is the trust layer. AI carries the drafting weight; a human carries the voice. The workflow's job is to protect it, not flatten it.</p>
+    </div>
+    <div class="layer l2">
+      <div class="l-num">02</div>
+      <div class="l-label">Operations</div>
+      <h4>Where the compound returns live.</h4>
+      <p>One well-designed workflow, run weekly, returns hours for the rest of the year. Not speed on one task, structural return of leaking hours.</p>
+    </div>
+    <div class="layer l3">
+      <div class="l-num">03</div>
+      <div class="l-label">Programs</div>
+      <h4>The line you don't cross.</h4>
+      <p>Never replace the human relationship at the heart of the program. Open the door only where the program itself invites it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ HOST ════════════════════════ -->
+<section class="host-section">
+  <div class="host-inner">
+    <div class="host-photo">
+      <img src="assets/latoya-headshot.jpg" alt="Latoya U. Robinson, M.S."/>
+    </div>
+    <div class="host-copy">
+      <div class="eyebrow">Your Host</div>
+      <h2>Latoya U. Robinson, M.S., <span class="italic">calm infrastructure</span> for nonprofits integrating AI.</h2>
+      <p>I spend my days inside nonprofits that have been handed AI like it's a rescue. It's not. AI is raw material, the quality of the integration decides whether it saves you or costs you.</p>
+      <p>For seven years I've designed workflows for EDs, comms leads, and development directors. The ones that stuck weren't the flashy ones. They were the <strong>calm ones</strong>: boring to describe, compounding week after week, running quietly in the background while the team got its weekends back.</p>
+      <p>I built this webinar for the leaders who keep being sold on speed when what they actually need is <strong>sustainability.</strong></p>
+      <div class="sig">Latoya</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ SOCIAL PROOF ════════════════════════ -->
+<section class="proof-strip">
+  <div class="inner">
+    <div class="stat-big">
+      <div class="n">156<span class="pct"> hrs</span></div>
+      <div class="l">returned to one nonprofit in year one from a single designed workflow.</div>
+    </div>
+    <div class="stat-big teal">
+      <div class="n">70<span class="pct">%</span></div>
+      <div class="l">of donors want to know when AI is involved in what you send them. Voice is the trust layer.</div>
+    </div>
+    <div class="stat-big green">
+      <div class="n">3</div>
+      <div class="l">layers. One assessment. One workflow to design this quarter. That's the whole map.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ WHO ════════════════════════ -->
+<section class="who-section">
+  <div class="eyebrow">Fit Check <span class="dot">·</span> Be honest</div>
+  <h2 style="font-family: 'Fraunces', serif; font-weight: 600; font-size: 52px; margin-top: 18px; letter-spacing: -0.018em; color: var(--navy); max-width: 720px; text-wrap: balance;">This room is <span class="italic" style="color: var(--coral); font-style: italic; font-weight: 400;">not</span> for everyone.</h2>
+  <div class="who-grid">
+    <div class="who-col yes">
+      <div class="label">Come in</div>
+      <h3>This is for you if , </h3>
+      <ul>
+        <li>You lead or direct at a nonprofit and feel the pull to integrate AI, but the tooling demos keep missing the real problem.</li>
+        <li>Your team is drowning in repeatable work that nobody has had time to design a system for.</li>
+        <li>You care more about voice, trust, and program integrity than velocity.</li>
+        <li>You want a framework you can actually run on Monday, not a 60-page report.</li>
+      </ul>
+    </div>
+    <div class="who-col no">
+      <div class="label">Skip this one</div>
+      <h3>This is not for you if , </h3>
+      <ul>
+        <li>You want an AI tool shootout or a demo of the latest model release.</li>
+        <li>You're looking to replace staff with AI. That's not what we build here.</li>
+        <li>You want a sales pitch. The first 60 minutes are pitch-free. The last 20 mention one offer. That's it.</li>
+        <li>You're looking for agency-style done-for-you. We teach the framework; you run it.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ QUOTE ════════════════════════ -->
+<section class="quote-strip">
+  <div class="q-mark">"</div>
+  <div class="pq">I came in skeptical. I left with a workflow my Development Director and I ran the next morning. The first run returned four hours that week. We haven't stopped.</div>
+  <div class="pq-cite">Marisol D. · Executive Director · Youth Literacy Nonprofit</div>
+</section>
+
+<!-- ════════════════════════ FAQ ════════════════════════ -->
+<section class="faq-section">
+  <h2>Common <span class="italic">questions</span>.</h2>
+
+  <div class="faq-item">
+    <div class="q">Will this be recorded if I can't attend live? <span class="plus">+</span></div>
+    <div class="a"><p>Yes. Everyone who registers gets the replay by email within 24 hours. It's available for 72 hours after the live session. That said, the live Q&A is the part worth showing up for.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="q">I'm not technical. Is this going to be over my head? <span class="plus">+</span></div>
+    <div class="a"><p>No. This is a framework webinar, not a tutorial. You'll leave knowing how to think about AI in your organization, not which buttons to click. If you can run a donor meeting, you can run this framework.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="q">Is there a pitch at the end? <span class="plus">+</span></div>
+    <div class="a"><p>Yes, in the last 20 minutes. For 60 minutes straight there is no pitch. After the framework and the two walkthroughs land, I share one offer for leaders who want structured help implementing. You're free to leave. Most don't.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="q">Does this apply to small nonprofits? We're under $1M in annual budget. <span class="plus">+</span></div>
+    <div class="a"><p>Especially. Smaller orgs feel the compound returns first because one workflow is a bigger share of the week. The framework is budget-neutral, the tools we use are either free or already in your stack.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="q">Can I bring my team? <span class="plus">+</span></div>
+    <div class="a"><p>Please do. One registration per person, and forward the confirmation email freely. Leaders who register together run the framework together; that's the pattern that sticks.</p></div>
+  </div>
+</section>
+
+<!-- ════════════════════════ FINAL CTA ════════════════════════ -->
+<section class="final-cta">
+  <div class="inner">
+    <div class="eyebrow" style="color: var(--coral); margin-bottom: 28px;">One click away</div>
+    <h2>Register once. Get the <span class="italic">framework</span>, the two walkthroughs, and the replay.</h2>
+    <p class="fc-sub">90 minutes on Thursday, May 21. If it's not the highest-leverage hour you've spent this quarter, say so, and I'll send you the framework deck anyway.</p>
+    <a href="#reg-form" onclick="document.querySelector('#reg-form input').focus();" class="btn btn-primary btn-lg">
+      Save my seat → May 21 at 12 PM ET <span class="arrow">→</span>
+    </a>
+    <div class="fc-micro">Free · Replay included · No pitch for 60 minutes</div>
+  </div>
+</section>
+
+<!-- VSL Modal -->
+<div class="vsl-modal" id="vsl-modal" role="dialog" aria-label="Video player">
+  <div class="vsl-modal-inner">
+    <button class="vsl-modal-close" onclick="closeVsl()">Close ×</button>
+    <div class="vsl-modal-frame">
+      <div class="mock-bars"></div>
+      <div class="mock-msg">
+        <div class="big">"Here's the shortest honest pitch I can make for the next 90 minutes of your time."</div>
+        <div>Latoya Robinson · Video placeholder · 1:28</div>
+      </div>
+    </div>
+    <div class="vsl-modal-cap">When you publish, swap this frame for the real video, Wistia/Mux/Vimeo embed, or a local &lt;video&gt; tag.</div>
+  </div>
+</div>
+
+<footer class="foot-chrome">
+  <div class="foot-inner">
+    <div>
+      <div class="foot-brand"><img class="mark foot-mark" src="assets/lur-puzzle.svg" alt="" width="64" height="64"/><span class="wm">LUR <span class="italic">Growth</span></span></div>
+      <div class="foot-note" style="margin-top: 14px;">Calm infrastructure for nonprofit leaders integrating AI with care. © 2026 LUR Growth.</div>
+    </div>
+    <div class="foot-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="index.html">Back to funnel index</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Tweaks panel -->
+<div class="tweaks">
+  <h5>Tweaks</h5>
+  <div class="row">
+    <label>Accent color</label>
+    <div class="swatches">
+      <div class="swatch coral active" data-accent="coral"></div>
+      <div class="swatch teal" data-accent="teal"></div>
+      <div class="swatch green" data-accent="green"></div>
+    </div>
+  </div>
+  <div class="row">
+    <label>Headline variant</label>
+    <div class="options">
+      <div class="opt active" data-opt-group="headline" data-opt="a">A · Calm infrastructure</div>
+      <div class="opt" data-opt-group="headline" data-opt="b">B · Three-layer</div>
+      <div class="opt" data-opt-group="headline" data-opt="c">C · 156 hours</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="toggle">
+      <span>Countdown urgency</span>
+      <div class="switch on" data-switch="urgency"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/*EDITMODE-BEGIN*/
+const TWEAK_DEFAULTS = {
+  "accent": "coral",
+  "headline": "a",
+  "urgency": true,
+  "hero": "dark"
+};
+/*EDITMODE-END*/
+</script>
+<script src="styles/funnel.js"></script>
+<!-- Social proof toast -->
+<div class="sp-toast" id="sp-toast" role="status" aria-live="polite">
+  <div class="sp-av">MO</div>
+  <div class="sp-body">
+    <div class="t"></div>
+    <div class="sub"></div>
+  </div>
+  <button class="sp-close" aria-label="Dismiss">×</button>
+</div>
+
+<!-- Exit intent modal -->
+<div class="exit-modal" id="exit-modal" role="dialog" aria-label="Before you go">
+  <div class="exit-modal-inner">
+    <button class="exit-modal-close" id="exit-close" aria-label="Close">×</button>
+    <div class="em-eyebrow">Wait — before you go</div>
+    <h3>If the webinar doesn't fit, take the <span class="italic">framework deck</span> instead.</h3>
+    <p>The three-layer framework as a 12-page PDF. The same map we'll walk through together, written out. Yours to use, share with your team, or sit on until the timing is right. No webinar commitment.</p>
+    <form class="em-form" id="exit-form">
+      <input type="email" id="exit-email" placeholder="your@nonprofit.org" required />
+      <button type="submit">Send me the deck</button>
+    </form>
+    <div class="em-fine">We'll email it in 60 seconds. <a id="exit-decline">No thanks, I'll pass on the deck too.</a></div>
+  </div>
+</div>
+<script>
+  // VSL open/close
+  const vslPlayer = document.getElementById('vsl-player');
+  const vslModal = document.getElementById('vsl-modal');
+  function openVsl(ch) {
+    vslModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeVsl() {
+    vslModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  vslPlayer.addEventListener('click', () => openVsl(0));
+  vslPlayer.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openVsl(0); }
+  });
+  vslModal.addEventListener('click', (e) => {
+    if (e.target === vslModal) closeVsl();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && vslModal.classList.contains('open')) closeVsl();
+  });
+  document.querySelectorAll('.vsl-chapters li').forEach(li => {
+    li.addEventListener('click', () => openVsl(parseInt(li.dataset.ch, 10)));
+  });
+
+  startCountdown('#hero-countdown');
+  wireForm('#reg-form', (form) => {
+    // Fake a route to thank-you with params
+    const data = new FormData();
+    form.querySelectorAll('input, select').forEach((el, i) => {
+      data.append('f' + i, el.value);
+    });
+    const name = form.querySelector('input[data-validate="required"]').value;
+    sessionStorage.setItem('calm_first_name', name);
+    window.location.href = '02-thank-you.html';
+  });
+  wireTweaks(TWEAK_DEFAULTS);
+  // FAQ toggle
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  /* ── Social proof toast rotation ───────────────── */
+  const SP_EVENTS = [
+    { initials: 'MO', name: 'Maya O.', org: 'NorthStar Literacy', city: 'Oakland, CA' },
+    { initials: 'DR', name: 'Darnell R.', org: 'Harbor Works', city: 'Baltimore, MD' },
+    { initials: 'JC', name: 'Jenna C.', org: 'Greenline Collective', city: 'Portland, OR' },
+    { initials: 'AM', name: 'Aisha M.', org: 'The Commons Fund', city: 'Atlanta, GA' },
+    { initials: 'PK', name: 'Priya K.', org: 'Foresight Aid', city: 'Chicago, IL' },
+    { initials: 'BL', name: 'Ben L.', org: 'Mercy & Moss', city: 'Minneapolis, MN' },
+    { initials: 'SK', name: 'Sana K.', org: 'Riverbend Shelter', city: 'Seattle, WA' },
+    { initials: 'RT', name: 'Rosa T.', org: 'Calico Youth Services', city: 'Phoenix, AZ' }
+  ];
+  const TIMING = ['just now', '2 min ago', '5 min ago', '8 min ago', '14 min ago', '22 min ago'];
+  let spIdx = 0;
+  const spToast = document.getElementById('sp-toast');
+  function showSp() {
+    const e = SP_EVENTS[spIdx % SP_EVENTS.length];
+    const t = TIMING[Math.floor(Math.random() * TIMING.length)];
+    spToast.querySelector('.sp-av').textContent = e.initials;
+    spToast.querySelector('.sp-body .t').innerHTML = `<span class="name">${e.name}</span> from ${e.org}`;
+    spToast.querySelector('.sp-body .sub').innerHTML = `<span class="tick"></span>Registered · ${t} · ${e.city}`;
+    spToast.classList.add('show');
+    spIdx++;
+    setTimeout(() => spToast.classList.remove('show'), 5200);
+  }
+  // Start after 10s, rotate every 22s
+  setTimeout(() => {
+    showSp();
+    setInterval(showSp, 22000);
+  }, 10000);
+  document.querySelector('#sp-toast .sp-close').addEventListener('click', () => {
+    spToast.classList.remove('show');
+    spToast.style.display = 'none';
+  });
+
+  /* ── Exit intent modal ─────────────────────────── */
+  const exitModal = document.getElementById('exit-modal');
+  let exitShown = false;
+  function openExit() {
+    if (exitShown || sessionStorage.getItem('lur_exit_shown')) return;
+    exitShown = true;
+    sessionStorage.setItem('lur_exit_shown', '1');
+    exitModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeExit() {
+    exitModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Fire on mouse leaving top of window
+  document.addEventListener('mouseleave', (e) => {
+    if (e.clientY <= 0 && !exitShown) openExit();
+  });
+  // Also fire after 45s of inactivity as a fallback
+  let idleTimer = setTimeout(openExit, 45000);
+  ['mousemove', 'scroll', 'keydown', 'click'].forEach(ev => {
+    document.addEventListener(ev, () => {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(openExit, 45000);
+    }, { passive: true });
+  });
+  exitModal.addEventListener('click', (e) => { if (e.target === exitModal) closeExit(); });
+  document.getElementById('exit-close').addEventListener('click', closeExit);
+  document.getElementById('exit-decline').addEventListener('click', (e) => {
+    e.preventDefault();
+    closeExit();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && exitModal.classList.contains('open')) closeExit();
+  });
+  document.getElementById('exit-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('exit-email').value;
+    const inner = exitModal.querySelector('.exit-modal-inner');
+    inner.innerHTML = `
+      <div class="em-eyebrow">Sent</div>
+      <h3>Check your inbox in <span class="italic">60 seconds</span>.</h3>
+      <p>The framework deck is on its way to <strong style="color:var(--navy);">${email}</strong>. No webinar commitment. Just the map.</p>
+      <button onclick="document.getElementById('exit-modal').classList.remove('open'); document.body.style.overflow = '';" class="btn btn-primary" style="margin-top: 10px;">Close</button>
+    `;
+  });
+</script>
+</body>
+</html>

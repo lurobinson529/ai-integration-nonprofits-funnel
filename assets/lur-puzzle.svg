@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="LUR Growth">
+  <title>LUR Growth</title>
+  <!-- Four puzzle pieces forming a square: Lead, Understand, Reach, Growth -->
+  <!-- Top-left · navy -->
+  <path fill="#0f2337" d="M4 4 h22 a4 4 0 0 1 4 4 v4 a3 3 0 0 0 0 6 v4 a4 4 0 0 1 -4 4 h-4 a3 3 0 0 1 -6 0 h-4 a4 4 0 0 1 -4 -4 v-4 a3 3 0 0 0 -6 0 V8 a4 4 0 0 1 4 -4 z"
+        transform="translate(0 0)"/>
+  <!-- Top-right · coral -->
+  <path fill="#fd9d7d" d="M34 4 h22 a4 4 0 0 1 4 4 v22 a4 4 0 0 1 -4 4 h-4 a3 3 0 0 1 0 -6 h-4 a4 4 0 0 1 -4 -4 v-4 a3 3 0 0 0 -6 0 h-4 a4 4 0 0 1 -4 -4 V8 a4 4 0 0 1 4 -4 z"/>
+  <!-- Bottom-left · teal -->
+  <path fill="#5bb9b0" d="M8 34 h4 a3 3 0 0 1 6 0 h4 a4 4 0 0 1 4 4 v4 a3 3 0 0 0 6 0 v4 a4 4 0 0 1 -4 4 H8 a4 4 0 0 1 -4 -4 V38 a4 4 0 0 1 4 -4 z"/>
+  <!-- Bottom-right · green -->
+  <path fill="#7fae6f" d="M38 38 h4 a4 4 0 0 1 4 4 v4 a3 3 0 0 0 6 0 h4 a4 4 0 0 1 4 4 v6 a4 4 0 0 1 -4 4 H38 a4 4 0 0 1 -4 -4 v-4 a3 3 0 0 1 0 -6 v-4 a4 4 0 0 1 4 -4 z"/>
+</svg>

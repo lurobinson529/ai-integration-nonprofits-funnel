@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Checkout · Calm Infrastructure Intensive</title>
+<link rel="stylesheet" href="styles/funnel.css?v=2"/>
+<style>
+  body { background: var(--off); }
+
+  .checkout-bar {
+    background: var(--navy); color: #fff;
+    padding: 14px 40px;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700;
+    text-align: center;
+  }
+  .checkout-bar .coral { color: var(--coral); margin: 0 10px; }
+
+  .checkout {
+    max-width: 1180px; margin: 0 auto; padding: 60px 40px 100px;
+    display: grid; grid-template-columns: 1.3fr 1fr; gap: 50px;
+    align-items: start;
+  }
+
+  .co-left h1 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 48px; line-height: 1.02; color: var(--navy);
+    letter-spacing: -0.018em; margin-bottom: 12px;
+    text-wrap: balance;
+  }
+  .co-left h1 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .co-left .lede {
+    font-size: 17px; color: var(--slate); margin-bottom: 36px; max-width: 520px;
+  }
+
+  .co-section {
+    background: #fff; border: 1px solid var(--rule); padding: 32px 34px;
+    margin-bottom: 18px;
+  }
+  .co-section h3 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 22px; color: var(--navy); letter-spacing: -0.005em;
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .co-section h3 .step {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .form-row {
+    display: grid; gap: 16px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .form-row.full { grid-template-columns: 1fr; }
+  .form-field { display: flex; flex-direction: column; gap: 6px; }
+  .form-field label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 700; color: var(--ink-mute);
+  }
+  .form-field input, .form-field select {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 14px 16px;
+    font-family: 'Inter', sans-serif; font-size: 15px;
+    color: var(--navy);
+    transition: border-color 0.2s, background 0.2s;
+    border-radius: 0;
+  }
+  .form-field input:focus, .form-field select:focus {
+    outline: none; border-color: var(--coral);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(253,157,125,0.12);
+  }
+  .form-field .hint {
+    font-size: 11px; color: var(--ink-mute); font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em;
+  }
+
+  /* Payment toggle */
+  .pay-toggle {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;
+  }
+  .pay-option {
+    padding: 18px 20px; border: 1px solid var(--rule); background: var(--paper);
+    cursor: pointer; transition: all 0.2s;
+    display: flex; flex-direction: column; gap: 4px;
+    position: relative;
+  }
+  .pay-option.active {
+    border-color: var(--coral); background: #fff;
+    box-shadow: 0 0 0 2px rgba(253,157,125,0.12);
+  }
+  .pay-option .po-name {
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 18px;
+    color: var(--navy); letter-spacing: -0.005em;
+  }
+  .pay-option .po-sub { font-size: 12px; color: var(--ink-mute); }
+  .pay-option.active::before {
+    content: ''; position: absolute; top: 12px; right: 12px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--coral);
+    box-shadow: inset 0 0 0 3px #fff;
+  }
+  .pay-option .tag-mini {
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 700; color: var(--teal-deep);
+    padding: 2px 6px; background: rgba(91,185,176,0.14);
+    display: inline-block; margin-top: 4px; width: fit-content;
+  }
+
+  /* Card visual */
+  .card-preview {
+    background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+    color: #fff; padding: 24px; margin-top: 18px;
+    display: grid; grid-template-rows: auto 1fr auto;
+    gap: 24px; position: relative; overflow: hidden;
+    min-height: 180px;
+  }
+  .card-preview::before {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 140px; height: 140px; border-radius: 50%;
+    background: radial-gradient(circle, var(--coral), transparent 70%);
+    opacity: 0.5;
+  }
+  .card-preview .cp-brand { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; z-index: 1; }
+  .card-preview .cp-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 20px; letter-spacing: 0.1em;
+    z-index: 1;
+  }
+  .card-preview .cp-row {
+    display: flex; justify-content: space-between; align-items: end;
+    font-size: 11px; z-index: 1;
+  }
+  .card-preview .cp-row .l { color: rgba(255,255,255,0.5); letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; }
+  .card-preview .cp-row .v { font-family: 'JetBrains Mono', monospace; margin-top: 3px; font-size: 13px; }
+
+  /* ── Right summary ────────────────────── */
+  .co-summary {
+    position: sticky; top: 90px;
+    background: #fff; border: 1px solid var(--rule); border-top: 3px solid var(--coral);
+    padding: 36px 34px 30px;
+  }
+  .co-summary h3 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 22px; color: var(--navy); letter-spacing: -0.005em;
+    margin-bottom: 24px;
+    padding-bottom: 20px; border-bottom: 1px solid var(--rule);
+  }
+  .sum-item {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 12px; padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 14px;
+  }
+  .sum-item .si-name { color: var(--navy); font-weight: 600; }
+  .sum-item .si-desc { font-size: 12px; color: var(--ink-mute); margin-top: 2px; }
+  .sum-item .si-val { font-family: 'Fraunces', serif; font-weight: 600; color: var(--navy); }
+  .sum-item.free .si-val { color: var(--teal-deep); }
+  .sum-item.disc .si-val { color: var(--coral); }
+
+  .sum-total {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 22px 0 4px; margin-top: 8px;
+    border-top: 2px solid var(--navy);
+  }
+  .sum-total .l { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; color: var(--navy); }
+  .sum-total .v { font-family: 'Fraunces', serif; font-weight: 600; font-size: 38px; color: var(--navy); letter-spacing: -0.018em; }
+  .sum-total .v .dollar { font-size: 20px; vertical-align: top; font-weight: 400; margin-right: 2px; }
+
+  .sum-recur { font-size: 11px; color: var(--ink-mute); letter-spacing: 0.06em; text-align: right; margin-top: 4px; }
+
+  .co-submit {
+    margin-top: 20px;
+    display: block; width: 100%;
+    background: var(--coral); color: var(--navy-dark);
+    padding: 20px; text-align: center;
+    font-weight: 700; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+    border: none; cursor: pointer;
+    box-shadow: 0 18px 40px rgba(253,157,125,0.28);
+    transition: transform 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .co-submit:hover { transform: translateY(-2px); }
+
+  .trust-strip {
+    margin-top: 18px;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    font-size: 11px; letter-spacing: 0.04em; color: var(--slate);
+  }
+  .trust-strip .ti { display: flex; gap: 8px; align-items: center; }
+  .trust-strip .chk { color: var(--teal-deep); font-weight: 700; }
+
+  .guar-mini {
+    margin-top: 22px; padding: 20px; background: var(--paper);
+    border-left: 3px solid var(--teal);
+    display: grid; grid-template-columns: 50px 1fr; gap: 14px; align-items: center;
+  }
+  .guar-mini .gs {
+    width: 50px; height: 50px; border-radius: 50%;
+    background: var(--teal); color: var(--navy-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px;
+  }
+  .guar-mini .gt {
+    font-size: 12px; color: var(--slate); line-height: 1.45;
+  }
+  .guar-mini .gt strong { color: var(--navy); }
+
+  .bump-offer {
+    background: rgba(91,185,176,0.06);
+    border: 1px dashed var(--teal);
+    padding: 20px 22px; margin-top: 16px;
+    display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: start;
+  }
+  .bump-offer input[type="checkbox"] {
+    width: 20px; height: 20px; margin-top: 4px;
+    accent-color: var(--teal-deep);
+  }
+  .bump-offer .bo-title {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 16px; color: var(--navy); letter-spacing: -0.005em;
+    margin-bottom: 4px;
+  }
+  .bump-offer .bo-desc { font-size: 12px; color: var(--slate); line-height: 1.45; }
+  .bump-offer .bo-price {
+    font-family: 'Fraunces', serif; font-weight: 600; color: var(--teal-deep); font-size: 18px;
+    white-space: nowrap;
+  }
+
+  /* Progress rail */
+  .progress-rail {
+    max-width: 1180px; margin: 0 auto; padding: 30px 40px 0;
+    display: flex; gap: 0; align-items: center;
+  }
+  .progress-step {
+    display: flex; gap: 10px; align-items: center;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700;
+    color: var(--ink-mute);
+  }
+  .progress-step .n {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--rule); color: var(--ink-mute);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+  }
+  .progress-step.done .n { background: var(--teal); color: var(--navy-dark); }
+  .progress-step.active { color: var(--navy); }
+  .progress-step.active .n { background: var(--navy); color: #fff; }
+  .progress-line { flex: 1; height: 1px; background: var(--rule); margin: 0 12px; }
+  .progress-line.done { background: var(--teal); }
+
+  @media (max-width: 900px) {
+    .checkout { grid-template-columns: 1fr; padding: 30px 20px 60px; }
+    .co-summary { position: static; }
+    .co-left h1 { font-size: 34px; }
+    .form-row { grid-template-columns: 1fr; }
+    .progress-rail { padding: 20px; flex-wrap: wrap; gap: 8px; }
+    .progress-line { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="checkout-bar">
+  Founding cohort pricing <span class="coral">·</span> Expires with the replay <span class="coral">·</span> 8 seats remaining
+</div>
+
+<header class="topbar">
+  <div class="bar-inner">
+    <a href="index.html" class="brand"><img class="mark" src="assets/lur-puzzle.svg" alt="LUR Growth" width="52" height="52"/><span class="name">LUR<br/>Growth</span></a>
+    <div class="bar-meta">
+      <span>Secure checkout</span>
+      <span class="dot">·</span>
+      <span>256-bit SSL · Stripe</span>
+    </div>
+  </div>
+</header>
+
+<nav class="progress-rail">
+  <div class="progress-step done"><div class="n">✓</div>Your seat</div>
+  <div class="progress-line done"></div>
+  <div class="progress-step active"><div class="n">2</div>Checkout</div>
+  <div class="progress-line"></div>
+  <div class="progress-step"><div class="n">3</div>Welcome</div>
+</nav>
+
+<section class="checkout">
+
+  <!-- LEFT FORM -->
+  <div class="co-left">
+    <h1>You're about to join the <span class="italic">founding cohort</span>.</h1>
+    <p class="lede">Next kick-off: Thursday, May 28 · 12 PM ET. You'll get your welcome kit, playbook, and cohort invite the moment payment clears.</p>
+
+    <form>
+      <div class="co-section">
+        <h3><span class="step">1</span>Who the seat is for</h3>
+        <div class="form-row">
+          <div class="form-field">
+            <label>First name</label>
+            <input type="text" value="Maya" />
+          </div>
+          <div class="form-field">
+            <label>Last name</label>
+            <input type="text" value="Chen" />
+          </div>
+        </div>
+        <div class="form-row full" style="margin-top: 14px;">
+          <div class="form-field">
+            <label>Email</label>
+            <input type="email" value="maya@northstarliteracy.org" />
+            <div class="hint">This is where your cohort invite, playbook, and receipts land.</div>
+          </div>
+        </div>
+        <div class="form-row" style="margin-top: 14px;">
+          <div class="form-field">
+            <label>Organization</label>
+            <input type="text" value="Northstar Literacy Project" />
+          </div>
+          <div class="form-field">
+            <label>Role</label>
+            <select>
+              <option>Executive Director</option>
+              <option>Development Director</option>
+              <option>Operations Lead</option>
+              <option>Program Director</option>
+              <option>Founder / CEO</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="co-section">
+        <h3><span class="step">2</span>How you'd like to pay</h3>
+        <div class="pay-toggle">
+          <div class="pay-option active" onclick="selectPay(this, 'once')">
+            <div class="po-name">$1,997 once</div>
+            <div class="po-sub">One payment. Full access unlocked.</div>
+            <span class="tag-mini">Save $100</span>
+          </div>
+          <div class="pay-option" onclick="selectPay(this, 'split')">
+            <div class="po-name">3 × $699</div>
+            <div class="po-sub">Monthly. First charge today.</div>
+          </div>
+        </div>
+
+        <div class="form-row full">
+          <div class="form-field">
+            <label>Card number</label>
+            <input type="text" value="4242  4242  4242  4242" />
+            <div class="hint">Powered by Stripe · your card never touches our servers</div>
+          </div>
+        </div>
+        <div class="form-row" style="margin-top: 14px; grid-template-columns: 1fr 1fr 1fr;">
+          <div class="form-field">
+            <label>Expiry</label>
+            <input type="text" value="09 / 28" />
+          </div>
+          <div class="form-field">
+            <label>CVC</label>
+            <input type="text" value="•••" />
+          </div>
+          <div class="form-field">
+            <label>ZIP</label>
+            <input type="text" value="02139" />
+          </div>
+        </div>
+
+        <div class="card-preview">
+          <div class="cp-brand">LUR · Calm Infrastructure Intensive</div>
+          <div class="cp-num">4242  4242  4242  4242</div>
+          <div class="cp-row">
+            <div>
+              <div class="l">Cardholder</div>
+              <div class="v">MAYA CHEN</div>
+            </div>
+            <div>
+              <div class="l">Expires</div>
+              <div class="v">09 / 28</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="co-section">
+        <h3><span class="step">3</span>One last thing (optional)</h3>
+        <label class="bump-offer" for="bump">
+          <input type="checkbox" id="bump" onchange="toggleBump(this)" />
+          <div>
+            <div class="bo-title">Add the Nonprofit AI Policy Template Pack</div>
+            <div class="bo-desc">Board-ready AI policy + staff guidelines + data handling checklist. Drops into your org exactly as-is, or edit to fit. Members-only add-on.</div>
+          </div>
+          <div class="bo-price">+$97</div>
+        </label>
+      </div>
+    </form>
+  </div>
+
+  <!-- RIGHT SUMMARY -->
+  <aside class="co-summary">
+    <h3>Your order</h3>
+    <div class="sum-item">
+      <div>
+        <div class="si-name">AI Integration for Nonprofit Leaders</div>
+        <div class="si-desc">CPD-accredited course · 6 modules</div>
+      </div>
+      <div class="si-val">$1,297</div>
+    </div>
+    <div class="sum-item">
+      <div>
+        <div class="si-name">Lead Through the Storm</div>
+        <div class="si-desc">CPD-accredited course · 5 modules</div>
+      </div>
+      <div class="si-val">$797</div>
+    </div>
+    <div class="sum-item">
+      <div>
+        <div class="si-name">Calm Infrastructure Lab (Skool)</div>
+        <div class="si-desc">6 months community access</div>
+      </div>
+      <div class="si-val">$582</div>
+    </div>
+    <div class="sum-item free">
+      <div>
+        <div class="si-name">AI Workflow Audit with Latoya · 90 min</div>
+        <div class="si-desc">Bonus · private session</div>
+      </div>
+      <div class="si-val">Included</div>
+    </div>
+    <div class="sum-item free">
+      <div>
+        <div class="si-name">Leadership Regeneration Audit · 90 min</div>
+        <div class="si-desc">Bonus · private session</div>
+      </div>
+      <div class="si-val">Included</div>
+    </div>
+    <div class="sum-item free">
+      <div>
+        <div class="si-name">Live Cohort Priority Access + Lifetime Skool rate</div>
+        <div class="si-desc">Bonuses</div>
+      </div>
+      <div class="si-val">Included</div>
+    </div>
+    <div class="sum-item free" id="bump-line" style="display:none;">
+      <div>
+        <div class="si-name">AI Policy Template Pack</div>
+        <div class="si-desc">Add-on</div>
+      </div>
+      <div class="si-val">$97</div>
+    </div>
+    <div class="sum-item disc">
+      <div>
+        <div class="si-name">Founding cohort discount</div>
+        <div class="si-desc">Webinar attendee only</div>
+      </div>
+      <div class="si-val">– $679</div>
+    </div>
+
+    <div class="sum-total">
+      <div class="l">Total today</div>
+      <div class="v"><span class="dollar">$</span><span id="total-val">1,997</span></div>
+    </div>
+    <div class="sum-recur" id="recur-note">One-time · USD · No recurring charges</div>
+
+    <button class="co-submit" onclick="submitOrder(event)">
+      Complete order <span style="font-family:'Fraunces',serif;font-style:italic;font-weight:400;">→</span>
+    </button>
+
+    <div class="trust-strip">
+      <div class="ti"><span class="chk">✓</span> SSL encrypted</div>
+      <div class="ti"><span class="chk">✓</span> Stripe secured</div>
+      <div class="ti"><span class="chk">✓</span> No auto-renew</div>
+      <div class="ti"><span class="chk">✓</span> Human support</div>
+    </div>
+
+    <div class="guar-mini">
+      <div class="gs">30</div>
+      <div class="gt"><strong>Implement in 30 days or full refund.</strong> Ship one workflow. If it doesn't return 5 hours/week, reply with one sentence and get your money back. No forms.</div>
+    </div>
+  </aside>
+</section>
+
+<footer class="foot-chrome">
+  <div class="foot-inner">
+    <div>
+      <div class="foot-brand"><img class="mark foot-mark" src="assets/lur-puzzle.svg" alt="" width="64" height="64"/><span class="wm">LUR <span class="italic">Growth</span></span></div>
+      <div class="foot-note" style="margin-top: 14px;">Questions about the program? <a href="mailto:latoya@lurgrowth.com" style="color:var(--coral); text-decoration:underline;">Email Latoya directly</a>.</div>
+    </div>
+    <div class="foot-links">
+      <a href="05-sales.html">← Back to offer</a>
+      <a href="07-welcome.html">Skip to welcome →</a>
+      <a href="index.html">Funnel index</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let plan = 'once';
+  let bumpOn = false;
+
+  function selectPay(el, type) {
+    document.querySelectorAll('.pay-option').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    plan = type;
+    updateTotal();
+  }
+  function toggleBump(cb) {
+    bumpOn = cb.checked;
+    document.getElementById('bump-line').style.display = bumpOn ? '' : 'none';
+    updateTotal();
+  }
+  function updateTotal() {
+    const base = plan === 'once' ? 1997 : 699;
+    const total = base + (bumpOn ? 97 : 0);
+    document.getElementById('total-val').textContent = total.toLocaleString();
+    document.getElementById('recur-note').textContent =
+      plan === 'once' ? 'One-time · USD · No recurring charges' : 'First of 3 monthly payments · Next charge in 30 days';
+  }
+  function submitOrder(e) {
+    e.preventDefault();
+    const btn = e.target.closest('.co-submit');
+    btn.textContent = 'Processing...';
+    btn.style.background = 'var(--navy)';
+    btn.style.color = '#fff';
+    setTimeout(() => { window.location.href = '07-welcome.html'; }, 1400);
+  }
+</script>
+</body>
+</html>

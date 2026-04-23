@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Join · The Calm Infrastructure Lab</title>
+<link rel="stylesheet" href="styles/funnel.css?v=2"/>
+<style>
+  body { background: var(--off); }
+
+  .checkout-bar {
+    background: var(--navy); color: #fff;
+    padding: 14px 40px;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700;
+    text-align: center;
+  }
+  .checkout-bar .coral { color: var(--coral); margin: 0 10px; }
+
+  .back-bar {
+    max-width: 1180px; margin: 0 auto; padding: 20px 40px 0;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
+  }
+  .back-bar a { color: var(--ink-mute); text-decoration: none; transition: color 0.2s; }
+  .back-bar a:hover { color: var(--coral); }
+
+  .checkout {
+    max-width: 1180px; margin: 0 auto; padding: 36px 40px 100px;
+    display: grid; grid-template-columns: 1.3fr 1fr; gap: 50px;
+    align-items: start;
+  }
+
+  .co-left .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 700;
+    color: var(--coral); margin-bottom: 16px;
+  }
+  .co-left .eyebrow::before { content: ''; width: 26px; height: 1px; background: var(--coral); }
+  .co-left h1 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 46px; line-height: 1.02; color: var(--navy);
+    letter-spacing: -0.018em; margin-bottom: 14px;
+    text-wrap: balance;
+  }
+  .co-left h1 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .co-left .lede {
+    font-size: 17px; color: var(--slate); margin-bottom: 36px; max-width: 540px;
+    line-height: 1.55;
+  }
+
+  /* Lab visual */
+  .lab-card {
+    background: var(--navy); color: #fff;
+    padding: 36px 36px 32px;
+    margin-bottom: 18px;
+    position: relative; overflow: hidden;
+    border-top: 3px solid var(--coral);
+  }
+  .lab-card::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(253,157,125,0.25), transparent 70%);
+  }
+  .lab-card .lc-tag {
+    position: relative; z-index: 1;
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    font-weight: 700; color: var(--coral);
+    margin-bottom: 14px;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .lab-card .lc-tag::after {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--coral); box-shadow: 0 0 0 3px rgba(253,157,125,0.3);
+  }
+  .lab-card h2 {
+    position: relative; z-index: 1;
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 32px; line-height: 1.05; color: #fff;
+    letter-spacing: -0.015em; margin-bottom: 8px;
+  }
+  .lab-card h2 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .lab-card .lc-sub {
+    position: relative; z-index: 1;
+    font-size: 14px; color: rgba(255,255,255,0.75);
+    margin-bottom: 26px; max-width: 460px;
+  }
+  .lab-stats {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 22px;
+  }
+  .lab-stats .stat { border-right: 1px solid rgba(255,255,255,0.1); padding-right: 16px; }
+  .lab-stats .stat:last-child { border-right: none; padding-right: 0; padding-left: 16px; }
+  .lab-stats .stat:not(:first-child):not(:last-child) { padding: 0 16px; }
+  .lab-stats .v {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 28px; color: #fff; line-height: 1;
+    letter-spacing: -0.015em; margin-bottom: 4px;
+  }
+  .lab-stats .l {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 700; color: rgba(255,255,255,0.5);
+  }
+
+  .whats-included {
+    background: #fff; border: 1px solid var(--rule);
+    padding: 28px 32px; margin-bottom: 18px;
+  }
+  .whats-included .wi-title {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 18px; color: var(--navy); letter-spacing: -0.005em;
+    margin-bottom: 18px;
+    padding-bottom: 14px; border-bottom: 1px solid var(--rule);
+  }
+  .whats-included ul {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px 22px;
+  }
+  .whats-included li {
+    font-size: 13px; color: var(--slate); line-height: 1.45;
+    padding: 6px 0 6px 22px; position: relative;
+  }
+  .whats-included li::before {
+    content: '✓'; position: absolute; left: 0; top: 5px;
+    color: var(--teal-deep); font-weight: 700; font-size: 12px;
+  }
+
+  /* Monthly rhythm */
+  .monthly-rhythm {
+    background: var(--paper); border: 1px solid var(--rule);
+    padding: 28px 32px; margin-bottom: 18px;
+  }
+  .monthly-rhythm h4 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 16px; color: var(--navy); letter-spacing: -0.005em;
+    margin-bottom: 16px;
+  }
+  .mr-list {
+    display: grid; gap: 10px;
+    font-size: 13px; color: var(--slate);
+  }
+  .mr-item { display: grid; grid-template-columns: 90px 1fr; gap: 14px; }
+  .mr-item .when {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--teal-deep); font-weight: 700; padding-top: 2px;
+  }
+
+  .co-section {
+    background: #fff; border: 1px solid var(--rule); padding: 32px 34px;
+    margin-bottom: 18px;
+  }
+  .co-section h3 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 22px; color: var(--navy); letter-spacing: -0.005em;
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .co-section h3 .step {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .form-row { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; }
+  .form-row.full { grid-template-columns: 1fr; }
+  .form-field { display: flex; flex-direction: column; gap: 6px; }
+  .form-field label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 700; color: var(--ink-mute);
+  }
+  .form-field input, .form-field select {
+    background: var(--paper); border: 1px solid var(--rule);
+    padding: 14px 16px;
+    font-family: 'Inter', sans-serif; font-size: 15px; color: var(--navy);
+    transition: border-color 0.2s, background 0.2s; border-radius: 0;
+  }
+  .form-field input:focus, .form-field select:focus {
+    outline: none; border-color: var(--coral); background: #fff;
+    box-shadow: 0 0 0 3px rgba(253,157,125,0.12);
+  }
+  .form-field .hint {
+    font-size: 11px; color: var(--ink-mute); font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em;
+  }
+
+  .co-summary {
+    position: sticky; top: 90px;
+    background: #fff; border: 1px solid var(--rule); border-top: 3px solid var(--coral);
+    padding: 36px 34px 30px;
+  }
+  .co-summary .co-title {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 22px; color: var(--navy); letter-spacing: -0.005em;
+    margin-bottom: 6px;
+  }
+  .co-summary .co-title .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .co-summary .co-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--ink-mute);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding-bottom: 22px; margin-bottom: 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sum-item {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 12px; padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 14px;
+  }
+  .sum-item .si-name { color: var(--navy); font-weight: 600; }
+  .sum-item .si-desc { font-size: 12px; color: var(--ink-mute); margin-top: 2px; }
+  .sum-item .si-val { font-family: 'Fraunces', serif; font-weight: 600; color: var(--navy); }
+  .sum-item.free .si-val { color: var(--teal-deep); }
+
+  .sum-total {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 22px 0 4px; margin-top: 8px;
+    border-top: 2px solid var(--navy);
+  }
+  .sum-total .l { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; color: var(--navy); }
+  .sum-total .v { font-family: 'Fraunces', serif; font-weight: 600; font-size: 38px; color: var(--navy); letter-spacing: -0.018em; }
+  .sum-total .v .dollar { font-size: 20px; vertical-align: top; font-weight: 400; margin-right: 2px; }
+  .sum-total .v .mo { font-size: 15px; color: var(--ink-mute); font-weight: 400; letter-spacing: 0; margin-left: 4px; }
+  .sum-recur { font-size: 11px; color: var(--ink-mute); letter-spacing: 0.06em; text-align: right; margin-top: 4px; }
+
+  .co-submit {
+    margin-top: 20px;
+    display: block; width: 100%;
+    background: var(--coral); color: var(--navy-dark);
+    padding: 20px; text-align: center;
+    font-weight: 700; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+    border: none; cursor: pointer;
+    box-shadow: 0 18px 40px rgba(253,157,125,0.28);
+    transition: transform 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .co-submit:hover { transform: translateY(-2px); }
+
+  .trust-strip {
+    margin-top: 18px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+    font-size: 11px; letter-spacing: 0.04em; color: var(--slate);
+  }
+  .trust-strip .ti { display: flex; gap: 8px; align-items: center; }
+  .trust-strip .chk { color: var(--teal-deep); font-weight: 700; }
+
+  .cancel-mini {
+    margin-top: 22px; padding: 18px 20px;
+    background: var(--paper);
+    border-left: 3px solid var(--teal);
+    font-size: 12px; color: var(--slate); line-height: 1.5;
+  }
+  .cancel-mini strong { color: var(--navy); display: block; margin-bottom: 4px; font-family: 'Fraunces', serif; font-weight: 600; font-size: 14px; }
+
+  .upgrade-note {
+    margin-top: 18px; padding: 18px 20px;
+    background: rgba(253,157,125,0.06);
+    border: 1px dashed var(--coral);
+    font-size: 12.5px; line-height: 1.5; color: var(--slate);
+  }
+  .upgrade-note strong { color: var(--navy); display: block; margin-bottom: 4px; font-family: 'Fraunces', serif; font-weight: 600; font-size: 14px; }
+  .upgrade-note a { color: var(--coral); font-weight: 600; text-decoration: underline; }
+
+  @media (max-width: 900px) {
+    .checkout { grid-template-columns: 1fr; padding: 24px 20px 60px; }
+    .co-summary { position: static; }
+    .co-left h1 { font-size: 32px; }
+    .form-row { grid-template-columns: 1fr; }
+    .whats-included ul { grid-template-columns: 1fr; }
+    .lab-stats { grid-template-columns: 1fr; gap: 16px; }
+    .lab-stats .stat { border-right: none; padding: 0 !important; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px !important; }
+    .lab-stats .stat:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="checkout-bar">
+  The Calm Infrastructure Lab <span class="coral">·</span> Monthly · Cancel anytime <span class="coral">·</span> First 7 days free
+</div>
+
+<header class="topbar">
+  <div class="bar-inner">
+    <a href="index.html" class="brand"><img class="mark" src="assets/lur-puzzle.svg" alt="LUR Growth" width="52" height="52"/><span class="name">LUR<br/>Growth</span></a>
+    <div class="bar-meta">
+      <span>Secure checkout</span>
+      <span class="dot">·</span>
+      <span>256-bit SSL · Stripe</span>
+    </div>
+  </div>
+</header>
+
+<div class="back-bar">
+  <a href="05-sales.html">← Change your mind? See all three paths</a>
+</div>
+
+<section class="checkout">
+
+  <!-- LEFT: context + form -->
+  <div class="co-left">
+    <div class="eyebrow">Community · Monthly membership</div>
+    <h1>Join the <span class="italic">Lab</span>. Run with leaders building the same thing.</h1>
+    <p class="lede">The Calm Infrastructure Lab on Skool is where nonprofit leaders share workflow wins, get unstuck on integration questions, and stay in the rhythm long after a course ends. Course content libraries, live monthly sessions, and a peer community you can actually message back.</p>
+
+    <div class="lab-card">
+      <div class="lc-tag">Live now on Skool</div>
+      <h2>The <span class="italic">Calm Infrastructure</span> Lab</h2>
+      <div class="lc-sub">For nonprofit leaders integrating AI with care. A private Skool community, run by Latoya, built for the long haul.</div>
+      <div class="lab-stats">
+        <div class="stat">
+          <div class="v">428</div>
+          <div class="l">Active members</div>
+        </div>
+        <div class="stat">
+          <div class="v">12</div>
+          <div class="l">Live sessions / yr</div>
+        </div>
+        <div class="stat">
+          <div class="v">2.4k</div>
+          <div class="l">Resources &amp; posts</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="whats-included">
+      <div class="wi-title">What's inside the Lab</div>
+      <ul>
+        <li>Both course content libraries (AI Integration + Storm)</li>
+        <li>Templates, SOPs, and prompt library</li>
+        <li>Frameworks for policy, governance, and board buy-in</li>
+        <li>Monthly live sessions with Latoya</li>
+        <li>Private peer community of nonprofit leaders</li>
+        <li>Weekly "what I shipped" threads</li>
+        <li>Office hours + async Q&amp;A</li>
+        <li>Resource drops on new tools and workflows</li>
+        <li>Cancel anytime · keep what you downloaded</li>
+        <li>First 7 days free · no charge if you cancel</li>
+      </ul>
+    </div>
+
+    <div class="monthly-rhythm">
+      <h4>The monthly rhythm</h4>
+      <div class="mr-list">
+        <div class="mr-item">
+          <div class="when">Week 1</div>
+          <div>Latoya hosts a live 60-min workshop on a single workflow or framework. Replay goes in the library the next day.</div>
+        </div>
+        <div class="mr-item">
+          <div class="when">Week 2</div>
+          <div>"What I shipped" threads — members post workflows they launched, lessons, screenshots. Latoya and peers respond.</div>
+        </div>
+        <div class="mr-item">
+          <div class="when">Week 3</div>
+          <div>Office hours · bring your stuck point, get unstuck in 15 min. Small groups, cameras on.</div>
+        </div>
+        <div class="mr-item">
+          <div class="when">Week 4</div>
+          <div>Resource drop · new templates, prompt updates, tool reviews. Plus the monthly calm-leadership reflection prompt.</div>
+        </div>
+      </div>
+    </div>
+
+    <form>
+      <div class="co-section">
+        <h3><span class="step">1</span>Who's joining the Lab</h3>
+        <div class="form-row">
+          <div class="form-field">
+            <label>First name</label>
+            <input type="text" placeholder="Your first name" />
+          </div>
+          <div class="form-field">
+            <label>Last name</label>
+            <input type="text" placeholder="Your last name" />
+          </div>
+        </div>
+        <div class="form-row full" style="margin-top: 14px;">
+          <div class="form-field">
+            <label>Email</label>
+            <input type="email" placeholder="you@nonprofit.org" />
+            <div class="hint">Your Skool invite and monthly receipts land here.</div>
+          </div>
+        </div>
+        <div class="form-row" style="margin-top: 14px;">
+          <div class="form-field">
+            <label>Organization</label>
+            <input type="text" placeholder="Your nonprofit" />
+          </div>
+          <div class="form-field">
+            <label>Role</label>
+            <select>
+              <option>Executive Director</option>
+              <option>Development Director</option>
+              <option>Operations Lead</option>
+              <option>Program Director</option>
+              <option>Founder / CEO</option>
+              <option>Board member</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="co-section">
+        <h3><span class="step">2</span>Payment</h3>
+        <div class="form-row full">
+          <div class="form-field">
+            <label>Card number</label>
+            <input type="text" placeholder="•••• •••• •••• ••••" />
+            <div class="hint">Powered by Stripe · first 7 days free · $97/mo thereafter</div>
+          </div>
+        </div>
+        <div class="form-row" style="margin-top: 14px; grid-template-columns: 1fr 1fr 1fr;">
+          <div class="form-field"><label>Expiry</label><input type="text" placeholder="MM / YY" /></div>
+          <div class="form-field"><label>CVC</label><input type="text" placeholder="•••" /></div>
+          <div class="form-field"><label>ZIP</label><input type="text" placeholder="12345" /></div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- RIGHT SUMMARY -->
+  <aside class="co-summary">
+    <div class="co-title">The Calm Infrastructure Lab</div>
+    <div class="co-sub">Monthly · Skool community</div>
+
+    <div class="sum-item">
+      <div>
+        <div class="si-name">Lab membership</div>
+        <div class="si-desc">Monthly · first 7 days free</div>
+      </div>
+      <div class="si-val">$97/mo</div>
+    </div>
+    <div class="sum-item free">
+      <div>
+        <div class="si-name">Both course content libraries</div>
+        <div class="si-desc">AI Integration + Lead Through the Storm</div>
+      </div>
+      <div class="si-val">Included</div>
+    </div>
+    <div class="sum-item free">
+      <div>
+        <div class="si-name">Monthly live sessions</div>
+        <div class="si-desc">Workshops + office hours</div>
+      </div>
+      <div class="si-val">Included</div>
+    </div>
+    <div class="sum-item free">
+      <div>
+        <div class="si-name">Template &amp; prompt library</div>
+        <div class="si-desc">All current + future drops</div>
+      </div>
+      <div class="si-val">Included</div>
+    </div>
+
+    <div class="sum-total">
+      <div class="l">Today's charge</div>
+      <div class="v"><span class="dollar">$</span>0<span class="mo">· then $97/mo</span></div>
+    </div>
+    <div class="sum-recur">7-day free trial · cancel anytime before day 7 and pay nothing</div>
+
+    <button class="co-submit" onclick="submitOrder(event)">
+      Start my 7-day free trial <span style="font-family:'Fraunces',serif;font-style:italic;font-weight:400;">→</span>
+    </button>
+
+    <div class="trust-strip">
+      <div class="ti"><span class="chk">✓</span> SSL encrypted</div>
+      <div class="ti"><span class="chk">✓</span> Stripe secured</div>
+      <div class="ti"><span class="chk">✓</span> Cancel anytime</div>
+      <div class="ti"><span class="chk">✓</span> No setup fees</div>
+    </div>
+
+    <div class="cancel-mini">
+      <strong>Cancel anytime, keep what you downloaded.</strong>
+      One click in your account settings. No support ticket, no "are you sure" gauntlet. Every template you saved stays yours.
+    </div>
+
+    <div class="upgrade-note">
+      <strong>Ready for the full Intensive?</strong>
+      Lab members lock the course-buyer rate for life. Three months of Lab membership credits toward the Intensive when you upgrade. <a href="05-sales.html">See the full system →</a>
+    </div>
+  </aside>
+</section>
+
+<footer class="foot-chrome">
+  <div class="foot-inner">
+    <div>
+      <div class="foot-brand"><img class="mark foot-mark" src="assets/lur-puzzle.svg" alt="" width="64" height="64"/><span class="wm">LUR <span class="italic">Growth</span></span></div>
+      <div class="foot-note" style="margin-top: 14px;">Questions about the Lab? <a href="mailto:latoya@lurgrowth.com" style="color:var(--coral); text-decoration:underline;">Email Latoya directly</a>.</div>
+    </div>
+    <div class="foot-links">
+      <a href="05-sales.html">← All offers</a>
+      <a href="06b-checkout-course.html">AI Integration course →</a>
+      <a href="index.html">Funnel index</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function submitOrder(e) {
+    e.preventDefault();
+    const btn = e.target.closest('.co-submit');
+    btn.textContent = 'Starting trial...';
+    btn.style.background = 'var(--navy)';
+    btn.style.color = '#fff';
+    setTimeout(() => { window.location.href = '07-welcome.html'; }, 1400);
+  }
+</script>
+</body>
+</html>

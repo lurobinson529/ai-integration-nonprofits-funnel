@@ -1,0 +1,54 @@
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/styles/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Pretty URLs for review links
+[[redirects]]
+  from = "/landing"
+  to = "/01-landing.html"
+  status = 200
+[[redirects]]
+  from = "/thank-you"
+  to = "/02-thank-you.html"
+  status = 200
+[[redirects]]
+  from = "/reminders"
+  to = "/03-reminders.html"
+  status = 200
+[[redirects]]
+  from = "/lobby"
+  to = "/04-lobby.html"
+  status = 200
+[[redirects]]
+  from = "/sales"
+  to = "/05-sales.html"
+  status = 200
+[[redirects]]
+  from = "/checkout"
+  to = "/06-checkout.html"
+  status = 200
+[[redirects]]
+  from = "/checkout/course"
+  to = "/06b-checkout-course.html"
+  status = 200
+[[redirects]]
+  from = "/checkout/storm"
+  to = "/06c-checkout-storm.html"
+  status = 200
+[[redirects]]
+  from = "/checkout/lab"
+  to = "/06d-checkout-skool.html"
+  status = 200
+[[redirects]]
+  from = "/welcome"
+  to = "/07-welcome.html"
+  status = 200

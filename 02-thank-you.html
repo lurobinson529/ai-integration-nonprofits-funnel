@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>You're in, See you May 21 · AI Integration Webinar</title>
+<link rel="stylesheet" href="styles/funnel.css?v=2"/>
+<style>
+  body { background: var(--off); }
+
+  .ty-hero {
+    background: var(--navy); color: #fff;
+    padding: 80px 40px 90px;
+    position: relative; overflow: hidden;
+  }
+  .ty-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(900px 500px at 90% 0%, rgba(91,185,176,0.2), transparent 60%),
+      radial-gradient(700px 400px at 0% 100%, rgba(253,157,125,0.18), transparent 60%);
+  }
+  .ty-hero .inner {
+    max-width: 1080px; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  .ty-hero .stamp {
+    display: inline-flex; align-items: center; gap: 14px;
+    padding: 10px 18px;
+    background: rgba(91,185,176,0.14);
+    border: 1px solid rgba(91,185,176,0.5);
+    color: var(--teal);
+    font-size: 12px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase;
+    margin-bottom: 34px;
+  }
+  .ty-hero .stamp .tick { width: 16px; height: 16px; border-radius: 50%; background: var(--teal); color: var(--navy-dark); display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+  .ty-hero h1 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 88px; line-height: 0.98; letter-spacing: -0.025em;
+    color: #fff; margin-bottom: 28px; max-width: 940px;
+    text-wrap: balance;
+  }
+  .ty-hero h1 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .ty-hero .sub {
+    font-size: 20px; line-height: 1.55; color: rgba(255,255,255,0.82);
+    max-width: 720px; margin-bottom: 44px;
+  }
+  .ty-hero .sub strong { color: var(--coral); font-weight: 600; }
+
+  .ty-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 30px;
+  }
+  .ty-grid .tile {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.14);
+    padding: 30px;
+    position: relative;
+  }
+  .ty-grid .tile::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--coral);
+  }
+  .ty-grid .tile.teal::before { background: var(--teal); }
+  .ty-grid .tile .k {
+    font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); font-weight: 700; margin-bottom: 12px;
+  }
+  .ty-grid .tile h4 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 26px; color: #fff; line-height: 1.18; letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .ty-grid .tile p { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.55; margin-bottom: 18px; }
+  .ty-grid .tile .cal-links {
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .ty-grid .tile .cal-link {
+    font-family: 'Inter', sans-serif; font-weight: 700;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff; transition: background 0.2s;
+    cursor: pointer;
+  }
+  .ty-grid .tile .cal-link:hover { background: rgba(91,185,176,0.18); border-color: var(--teal); }
+  .ty-grid .tile .zoom-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--teal); word-break: break-all;
+    padding: 10px 14px;
+    background: rgba(91,185,176,0.08);
+    border: 1px solid rgba(91,185,176,0.3);
+  }
+
+  .countdown-hero {
+    margin-top: 50px; padding-top: 36px;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    position: relative;
+  }
+  .countdown-hero::before {
+    content: ''; position: absolute; top: -2px; left: 0;
+    width: 72px; height: 3px; background: var(--coral);
+  }
+  .countdown-hero .l {
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); font-weight: 700; margin-bottom: 18px;
+  }
+  .countdown .unit { min-width: 100px; padding: 20px 14px 14px; }
+  .countdown .unit .n { font-size: 52px; }
+
+  /* ── Prework section ──────────────────────────── */
+  .prework {
+    padding: 100px 40px; max-width: 1080px; margin: 0 auto;
+  }
+  .prework .head {
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 80px; align-items: end;
+    margin-bottom: 50px;
+  }
+  .prework h2 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 54px; line-height: 1.02; color: var(--navy);
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+  }
+  .prework h2 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .prework .head-copy p {
+    font-size: 18px; line-height: 1.6; color: var(--slate);
+  }
+
+  .prework-list {
+    background: #fff; border: 1px solid var(--rule);
+    border-top: 3px solid var(--coral);
+    padding: 10px 40px;
+  }
+  .pw-row {
+    display: grid; grid-template-columns: 80px 1fr auto;
+    gap: 30px; align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .pw-row:last-child { border-bottom: none; }
+  .pw-row .num {
+    font-family: 'Fraunces', serif; font-weight: 400; font-style: italic;
+    font-size: 32px; color: var(--coral); line-height: 1;
+  }
+  .pw-row .body h4 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 22px; color: var(--navy); letter-spacing: -0.005em;
+    margin-bottom: 6px;
+  }
+  .pw-row .body p { font-size: 15px; color: var(--slate); line-height: 1.5; }
+  .pw-row .time {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 700; color: var(--ink-mute);
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ── Share ─────────────────────────────────────── */
+  .share {
+    background: var(--paper); padding: 80px 40px;
+  }
+  .share .inner {
+    max-width: 920px; margin: 0 auto;
+    text-align: center;
+  }
+  .share h3 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 36px; color: var(--navy); letter-spacing: -0.015em;
+    margin-bottom: 14px;
+    text-wrap: balance;
+  }
+  .share p { font-size: 17px; color: var(--slate); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+  .share-btns {
+    display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+  }
+  .share-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px;
+    background: #fff;
+    border: 1px solid var(--rule);
+    font-weight: 700; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--navy);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .share-btn:hover { border-color: var(--coral); color: var(--coral); }
+
+  /* ── What next ─────────────────────────────────── */
+  .next-steps {
+    padding: 100px 40px; max-width: 1080px; margin: 0 auto;
+    text-align: center;
+  }
+  .next-steps .eyebrow { margin-bottom: 22px; }
+  .next-steps h3 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 40px; color: var(--navy); letter-spacing: -0.015em;
+    margin-bottom: 18px;
+    text-wrap: balance;
+  }
+  .next-steps p {
+    font-size: 17px; color: var(--slate); margin-bottom: 36px;
+    max-width: 600px; margin-left: auto; margin-right: auto;
+  }
+  .next-steps .btn { margin: 0 6px; }
+
+  @media (max-width: 900px) {
+    .ty-hero h1 { font-size: 48px; }
+    .ty-grid { grid-template-columns: 1fr; }
+    .prework .head { grid-template-columns: 1fr; gap: 24px; }
+    .prework h2 { font-size: 36px; }
+    .pw-row { grid-template-columns: 1fr; gap: 10px; }
+    .pw-row .time { order: -1; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="bar-inner">
+    <a href="index.html" class="brand"><img class="mark" src="assets/lur-puzzle.svg" alt="LUR Growth" width="52" height="52"/><span class="name">LUR<br/>Growth</span></a>
+    <div class="bar-meta">
+      <span>Registered</span>
+      <span class="dot">·</span>
+      <span>May 21 · 12 PM ET</span>
+    </div>
+  </div>
+</header>
+
+<section class="ty-hero">
+  <div class="inner">
+    <div class="stamp">
+      <span class="tick">✓</span>
+      You're registered · Seat confirmed
+    </div>
+    <h1>You're in, <span id="first-name" class="italic">friend</span>. Thursday, May 21, here's what happens next.</h1>
+    <p class="sub">Your seat is saved. A confirmation email is heading to your inbox now with the Zoom link, calendar invite, and a note from me. <strong>Add it to your calendar right now</strong>, the no-show rate drops by 64% when people do it in the first 60 seconds. It takes 10.</p>
+
+    <div class="ty-grid">
+      <div class="tile">
+        <div class="k">Step 01 · Add to calendar</div>
+        <h4>Lock it in before something else grabs the slot.</h4>
+        <p>One click. Your choice of calendar. The event includes the Zoom link, the agenda, and a 10-minute reminder.</p>
+        <div class="cal-links">
+          <a class="cal-link" href="#">Google</a>
+          <a class="cal-link" href="#">Apple</a>
+          <a class="cal-link" href="#">Outlook</a>
+          <a class="cal-link" href="#">.ics file</a>
+        </div>
+      </div>
+      <div class="tile teal">
+        <div class="k">Step 02 · Save the Zoom link</div>
+        <h4>Doors open 10 minutes early.</h4>
+        <p>Same link lands in your inbox. Bookmark it. Come early, I answer questions in the lobby before we start.</p>
+        <div class="zoom-link">zoom.us/j/calm-infra-may21</div>
+      </div>
+    </div>
+
+    <div class="countdown-hero">
+      <div class="l">Webinar begins in</div>
+      <div class="countdown" id="ty-countdown">
+        <div class="unit"><div class="n" data-c="d">00</div><div class="l">Days</div></div>
+        <div class="unit"><div class="n" data-c="h">00</div><div class="l">Hours</div></div>
+        <div class="unit"><div class="n" data-c="m">00</div><div class="l">Mins</div></div>
+        <div class="unit"><div class="n" data-c="s">00</div><div class="l">Secs</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prework">
+  <div class="head">
+    <h2>While you wait, a <span class="italic">5-minute</span> pre-work.</h2>
+    <div class="head-copy">
+      <p>Most webinars ask nothing of you before you show up. This one will land three times harder if you bring one real workflow in your head when we start. Here's how to prep, it takes five minutes, and the answers become the material we work with on May 21.</p>
+    </div>
+  </div>
+
+  <div class="prework-list">
+    <div class="pw-row">
+      <div class="num">01</div>
+      <div class="body">
+        <h4>List three workflows that leak hours every week.</h4>
+        <p>Donor thank-yous. Board updates. Program reports. Grant capture. Anything you keep re-doing from scratch.</p>
+      </div>
+      <div class="time">2 min</div>
+    </div>
+    <div class="pw-row">
+      <div class="num">02</div>
+      <div class="body">
+        <h4>Circle the one that costs you the most weekly time.</h4>
+        <p>Not the most important. The one that most consistently steals your Thursday afternoon. We'll design around it.</p>
+      </div>
+      <div class="time">1 min</div>
+    </div>
+    <div class="pw-row">
+      <div class="num">03</div>
+      <div class="body">
+        <h4>Write one sentence about what "calm" would look like there.</h4>
+        <p>If this workflow ran itself on Monday mornings, what would open up on your calendar? Write it in plain English.</p>
+      </div>
+      <div class="time">2 min</div>
+    </div>
+  </div>
+</section>
+
+<section class="share">
+  <div class="inner">
+    <div class="eyebrow" style="margin-bottom: 18px;">One quiet ask</div>
+    <h3>Know a nonprofit leader who'd benefit? Send them the link.</h3>
+    <p>The framework gets stronger when leaders attend together. Forward the registration page to anyone who's been asking what to do about AI.</p>
+    <div class="share-btns">
+      <a class="share-btn" href="#" onclick="navigator.clipboard.writeText('https://lur.growth/calm-infrastructure-webinar');showToast('Link copied to clipboard');return false;">Copy link</a>
+      <a class="share-btn" href="#">Share on LinkedIn</a>
+      <a class="share-btn" href="#">Email a colleague</a>
+    </div>
+  </div>
+</section>
+
+<section class="next-steps">
+  <div class="eyebrow">Before you close this tab</div>
+  <h3>Check your inbox.</h3>
+  <p>Look for the confirmation from <strong style="color: var(--navy);">latoya@lurgrowth.com</strong>. If it's not there in 5 minutes, peek in spam and mark it safe so the reminders arrive on time.</p>
+  <a class="btn btn-ghost-dark" href="index.html">Back to funnel index <span class="arrow">→</span></a>
+  <a class="btn btn-primary" href="03-reminders.html">Preview the reminder sequence <span class="arrow">→</span></a>
+</section>
+
+<footer class="foot-chrome">
+  <div class="foot-inner">
+    <div>
+      <div class="foot-brand"><img class="mark foot-mark" src="assets/lur-puzzle.svg" alt="" width="64" height="64"/><span class="wm">LUR <span class="italic">Growth</span></span></div>
+      <div class="foot-note" style="margin-top: 14px;">Calm infrastructure for nonprofit leaders integrating AI with care. © 2026 LUR Growth.</div>
+    </div>
+    <div class="foot-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="index.html">Funnel index</a>
+    </div>
+  </div>
+</footer>
+
+<script src="styles/funnel.js"></script>
+<script>
+  const fn = sessionStorage.getItem('calm_first_name');
+  if (fn) document.getElementById('first-name').textContent = fn;
+  startCountdown('#ty-countdown');
+</script>
+</body>
+</html>

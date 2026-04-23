@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Calm Infrastructure Intensive · AI Integration for Nonprofit Leaders</title>
+<link rel="stylesheet" href="styles/funnel.css?v=2"/>
+<style>
+  body { background: var(--off); }
+
+  /* ── Replay hero ───────────────────────────── */
+  .replay-hero {
+    background: var(--navy);
+    color: #fff;
+    padding: 60px 40px 80px;
+    position: relative; overflow: hidden;
+  }
+  .replay-hero::before {
+    content:''; position:absolute; inset:0;
+    background:
+      radial-gradient(900px 500px at 85% 0%, rgba(91,185,176,0.18), transparent 60%),
+      radial-gradient(700px 500px at 0% 100%, rgba(253,157,125,0.16), transparent 60%);
+  }
+  .replay-hero .inner {
+    max-width: 1280px; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  .replay-hero .chip-row {
+    display: flex; gap: 14px; align-items: center; margin-bottom: 26px;
+    flex-wrap: wrap;
+  }
+  .replay-hero .chip {
+    font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+    font-weight: 700; padding: 8px 14px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.7);
+  }
+  .replay-hero .chip.coral { color: var(--coral); border-color: rgba(253,157,125,0.5); background: rgba(253,157,125,0.08); }
+  .replay-hero h1 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 72px; line-height: 0.99; letter-spacing: -0.022em;
+    color: #fff; margin-bottom: 24px; max-width: 1000px;
+    text-wrap: balance;
+  }
+  .replay-hero h1 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .replay-hero .sub { font-size: 20px; color: rgba(255,255,255,0.78); max-width: 720px; margin-bottom: 40px; }
+
+  .replay-grid {
+    display: grid; grid-template-columns: 1.5fr 1fr;
+    gap: 50px; align-items: start;
+  }
+
+  .video-frame {
+    background: #000; aspect-ratio: 16/9;
+    border: 1px solid rgba(255,255,255,0.15);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .video-frame .play-btn {
+    width: 92px; height: 92px; border-radius: 50%;
+    background: var(--coral); color: var(--navy-dark);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 20px 50px rgba(253,157,125,0.4);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .video-frame .play-btn:hover { transform: scale(1.08); }
+  .video-frame .play-btn .tri {
+    width: 0; height: 0;
+    border-left: 24px solid var(--navy-dark);
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    margin-left: 6px;
+  }
+  .video-frame .vf-meta {
+    position: absolute; bottom: 20px; left: 20px; right: 20px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+  }
+  .video-frame .vf-meta .runtime { color: var(--coral); }
+  .video-frame .bg-overlay {
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(90deg, transparent 0, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px),
+      linear-gradient(135deg, #0e2a38, #1a3e52);
+    z-index: 0;
+  }
+  .video-frame .play-btn, .video-frame .vf-meta { position: relative; z-index: 1; }
+
+  .replay-meta-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-top: 3px solid var(--coral);
+    padding: 30px 32px;
+  }
+  .replay-meta-card h4 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 24px; color: #fff; letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+  .replay-meta-card .rmc-rows { display: flex; flex-direction: column; gap: 14px; }
+  .replay-meta-card .rmc-row {
+    display: grid; grid-template-columns: 100px 1fr;
+    gap: 16px; align-items: baseline;
+    padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .replay-meta-card .rmc-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .replay-meta-card .rmc-row .k { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 700; }
+  .replay-meta-card .rmc-row .v { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 600; color: #fff; }
+
+  .replay-meta-card .expires {
+    margin-top: 24px; padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 700;
+    color: rgba(255,255,255,0.5); margin-bottom: 12px;
+  }
+  .replay-meta-card .countdown .unit { min-width: 60px; padding: 12px 8px 8px; }
+  .replay-meta-card .countdown .unit .n { font-size: 28px; }
+
+  /* ── The shift section (from deck) ─────────────── */
+  .shift-section {
+    padding: 100px 40px; max-width: 1280px; margin: 0 auto;
+  }
+  .shift-section .sec-head { max-width: 900px; margin-bottom: 60px; }
+  .shift-section h2 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 60px; line-height: 1.02; color: var(--navy);
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+  }
+  .shift-section h2 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .shift-section .sec-head .lede { margin-top: 22px; font-size: 20px; max-width: 720px; color: var(--slate); }
+
+  .shift-cards {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .shift-card {
+    background: #fff; border: 1px solid var(--rule); padding: 40px;
+    position: relative;
+  }
+  .shift-card.before { border-top: 3px solid var(--coral); }
+  .shift-card.after { border-top: 3px solid var(--teal); }
+  .shift-card .label {
+    font-weight: 700; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .shift-card.before .label { color: var(--coral-deep); }
+  .shift-card.after .label { color: var(--teal-deep); }
+  .shift-card h4 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 28px; color: var(--navy); letter-spacing: -0.01em;
+    margin-bottom: 14px; line-height: 1.2;
+  }
+  .shift-card p { font-size: 16px; color: var(--slate); line-height: 1.6; }
+  .shift-card ul { list-style: none; margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .shift-card li { font-size: 15px; color: var(--slate); padding-left: 20px; position: relative; line-height: 1.5; }
+  .shift-card.before li::before {
+    content: '×'; position: absolute; left: 0; color: var(--coral-deep); font-weight: 700;
+  }
+  .shift-card.after li::before {
+    content: '✓'; position: absolute; left: 0; color: var(--teal-deep); font-weight: 700;
+  }
+
+  /* ── Offer intro ──────────────────────────────── */
+  .offer-intro {
+    background: var(--paper); padding: 120px 40px;
+  }
+  .offer-intro .inner {
+    max-width: 960px; margin: 0 auto; text-align: center;
+  }
+  .offer-intro .eyebrow { margin-bottom: 26px; }
+  .offer-intro h2 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 76px; line-height: 0.99; letter-spacing: -0.022em;
+    color: var(--navy); margin-bottom: 28px;
+    text-wrap: balance;
+  }
+  .offer-intro h2 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .offer-intro .lede { font-size: 22px; max-width: 720px; margin: 0 auto; color: var(--slate); }
+
+  /* ── Value stack ──────────────────────────────── */
+  .stack-section {
+    background: var(--navy-dark); color: #fff;
+    padding: 120px 40px; position: relative; overflow: hidden;
+  }
+  .stack-section::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(900px 500px at 90% 0%, rgba(91,185,176,0.1), transparent 60%),
+      radial-gradient(600px 400px at 10% 100%, rgba(253,157,125,0.1), transparent 60%);
+  }
+  .stack-section .inner {
+    max-width: 1280px; margin: 0 auto; position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1.3fr 1fr; gap: 60px;
+    align-items: start;
+  }
+  .stack-section .s-head { margin-bottom: 40px; }
+  .stack-section h2 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 56px; line-height: 1.02; color: #fff; letter-spacing: -0.018em;
+    margin-bottom: 22px;
+    text-wrap: balance;
+  }
+  .stack-section h2 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .stack-section .sec-sub { font-size: 18px; color: rgba(255,255,255,0.7); max-width: 520px; }
+
+  .stack-list {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.14);
+    padding: 10px 34px;
+  }
+  .stack-item {
+    display: grid; grid-template-columns: 36px 1fr auto;
+    gap: 20px; align-items: flex-start;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .stack-item:last-child { border-bottom: none; }
+  .stack-item .chk {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--teal); color: var(--navy-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  /* Bonus items: rebuild left column as a unified badge+check block */
+  .stack-item.bonus {
+    grid-template-columns: 88px 1fr auto;
+    padding: 32px 0;
+  }
+  .stack-item.bonus .bonus-badge {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 10px; padding: 14px 10px;
+    background: rgba(253,157,125,0.08);
+    border: 1px solid rgba(253,157,125,0.4);
+    width: 80px;
+  }
+  .stack-item.bonus .bonus-badge .bb-label {
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 700; color: var(--coral);
+  }
+  .stack-item.bonus .bonus-badge .bb-num {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 22px; line-height: 1; color: var(--coral);
+    letter-spacing: -0.01em;
+  }
+  .stack-item.bonus .bonus-badge .bb-chk {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--coral); color: var(--navy-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 11px;
+    margin-top: 2px;
+  }
+  .stack-item .body h4 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 22px; color: #fff; letter-spacing: -0.005em;
+    margin-bottom: 8px; line-height: 1.25;
+  }
+  .stack-item .body p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.55; max-width: 520px; }
+  .stack-item .val {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 20px; color: var(--teal); letter-spacing: -0.005em;
+    text-align: right; white-space: nowrap;
+  }
+  .stack-item.bonus .val { color: var(--coral); }
+  .stack-item .tag-sm {
+    display: inline-block;
+    font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase;
+    font-weight: 700; padding: 4px 8px;
+    background: rgba(253,157,125,0.14); color: var(--coral);
+    border: 1px solid rgba(253,157,125,0.4);
+    margin-bottom: 8px;
+  }
+
+  .stack-total {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 30px 34px;
+    border: 1px solid rgba(255,255,255,0.2);
+    margin-top: 20px;
+    background: rgba(255,255,255,0.02);
+  }
+  .stack-total .t-l { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; color: rgba(255,255,255,0.6); }
+  .stack-total .t-v { font-family: 'Fraunces', serif; font-weight: 600; font-size: 38px; color: #fff; letter-spacing: -0.015em; }
+
+  /* ── Price card ───────────────────────────────── */
+  .price-card {
+    position: sticky; top: 100px;
+    background: rgba(91,185,176,0.05);
+    border: 1px solid rgba(91,185,176,0.3);
+    padding: 44px 36px 40px;
+    text-align: center;
+  }
+  .price-card .seal {
+    position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+    background: var(--coral); color: var(--navy-dark);
+    font-weight: 700; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+    padding: 8px 18px;
+  }
+  .price-card .founding-label {
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    font-weight: 700; color: var(--teal); margin-bottom: 18px;
+    margin-top: 12px;
+  }
+  .price-card .retail {
+    font-size: 14px; color: rgba(255,255,255,0.5);
+    text-decoration: line-through;
+    margin-bottom: 10px;
+  }
+  .price-card .big {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 94px; line-height: 1; color: var(--coral);
+    letter-spacing: -0.03em; margin-bottom: 14px;
+  }
+  .price-card .big .dollar { font-size: 44px; vertical-align: top; font-weight: 400; margin-right: 4px; }
+  .price-card .split {
+    font-size: 15px; color: rgba(255,255,255,0.78); margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .price-card .micro { font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; margin-bottom: 26px; }
+
+  .price-card .btn-primary { width: 100%; }
+  .price-card .trust-row {
+    display: flex; gap: 14px; justify-content: center; margin-top: 20px;
+    font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 0.08em;
+  }
+  .price-card .trust-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .price-card .trust-row .chk { color: var(--teal); }
+
+  .price-card .scarcity {
+    margin-top: 22px; padding: 14px;
+    background: rgba(253,157,125,0.08);
+    border: 1px solid rgba(253,157,125,0.3);
+    font-size: 12px; color: var(--coral); font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+  .price-card .seats-bar {
+    height: 4px; background: rgba(255,255,255,0.1);
+    margin-top: 10px; position: relative; overflow: hidden;
+  }
+  .price-card .seats-fill {
+    position: absolute; inset: 0 auto 0 0;
+    width: 73%; background: var(--coral);
+  }
+
+  /* ── Guarantee ──────────────────────────────── */
+  .guarantee-section {
+    padding: 100px 40px; max-width: 1080px; margin: 0 auto;
+  }
+  .guarantee-box {
+    display: grid; grid-template-columns: 140px 1fr;
+    gap: 50px; align-items: center;
+    padding: 50px 60px;
+    background: #fff; border: 1px solid var(--rule);
+    border-top: 3px solid var(--teal);
+    position: relative;
+  }
+  .guarantee-box .seal-stamp {
+    width: 140px; height: 140px; border-radius: 50%;
+    background: var(--teal);
+    display: flex; align-items: center; justify-content: center; flex-direction: column;
+    color: var(--navy-dark);
+    font-family: 'Fraunces', serif;
+    position: relative;
+  }
+  .guarantee-box .seal-stamp::before {
+    content: ''; position: absolute; inset: 6px; border-radius: 50%;
+    border: 1px dashed rgba(16,49,64,0.4);
+  }
+  .guarantee-box .seal-stamp .num { font-weight: 600; font-size: 42px; line-height: 1; letter-spacing: -0.02em; }
+  .guarantee-box .seal-stamp .lbl { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; margin-top: 4px; }
+  .guarantee-box h3 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 36px; line-height: 1.1; color: var(--navy); letter-spacing: -0.015em;
+    margin-bottom: 12px;
+    text-wrap: balance;
+  }
+  .guarantee-box h3 .italic { font-style: italic; font-weight: 400; color: var(--teal-deep); }
+  .guarantee-box p { font-size: 16px; line-height: 1.6; color: var(--slate); max-width: 620px; }
+
+  /* ── Testimonials ──────────────────────────── */
+  .testi-section {
+    background: var(--paper);
+    padding: 100px 40px;
+  }
+  .testi-section .inner {
+    max-width: 1280px; margin: 0 auto;
+  }
+  .testi-section .sec-head { margin-bottom: 60px; max-width: 720px; }
+  .testi-section h2 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 52px; line-height: 1.02; color: var(--navy); letter-spacing: -0.018em;
+    margin-bottom: 18px;
+  }
+  .testi-section h2 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .testi-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .testi {
+    background: #fff; border: 1px solid var(--rule);
+    padding: 36px 32px;
+    display: flex; flex-direction: column;
+  }
+  .testi .q-mark {
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 44px;
+    color: var(--coral); line-height: 0.5; margin-bottom: 14px;
+  }
+  .testi .quote {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+    font-size: 20px; line-height: 1.4; color: var(--navy);
+    margin-bottom: 24px;
+    text-wrap: pretty;
+  }
+  .testi .cite {
+    margin-top: auto; padding-top: 20px; border-top: 1px solid var(--rule);
+    display: flex; gap: 14px; align-items: center;
+  }
+  .testi .avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--coral));
+    color: var(--navy-dark); display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 16px;
+  }
+  .testi .name { font-weight: 700; font-size: 14px; color: var(--navy); letter-spacing: 0.02em; }
+  .testi .role { font-size: 12px; color: var(--ink-mute); margin-top: 2px; }
+
+  /* ── Final offer CTA ──────────────────────── */
+  .final-offer {
+    background: var(--navy); color: #fff;
+    padding: 120px 40px;
+    position: relative; overflow: hidden;
+  }
+  .final-offer::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(1000px 500px at 50% 120%, rgba(253,157,125,0.25), transparent 70%);
+  }
+  .final-offer .inner { max-width: 860px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+  .final-offer h2 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 64px; line-height: 1.04; color: #fff;
+    letter-spacing: -0.02em; margin-bottom: 26px;
+    text-wrap: balance;
+  }
+  .final-offer h2 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .final-offer .sub {
+    font-size: 20px; color: rgba(255,255,255,0.78); margin-bottom: 42px;
+    max-width: 640px; margin-left: auto; margin-right: auto;
+  }
+  .final-offer .final-cd {
+    margin: 40px auto 48px; display: flex; flex-direction: column; align-items: center; gap: 18px;
+    max-width: 520px;
+  }
+  .final-offer .final-cd .l { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 700; color: var(--coral); }
+  .final-offer .cta-stack {
+    display: flex; flex-direction: column; align-items: center; gap: 18px;
+    margin-top: 10px;
+  }
+  .final-offer .cta-stack .btn-primary {
+    padding: 24px 56px; font-size: 17px;
+    box-shadow: 0 20px 50px rgba(253,157,125,0.35);
+  }
+  .final-offer .cta-micro {
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55); font-weight: 600;
+    display: flex; gap: 18px; align-items: center;
+  }
+  .final-offer .cta-micro .dot-sep { opacity: 0.4; }
+
+  /* ── Bump-down (downsell) section ───────────────── */
+  .bump-down {
+    background: var(--paper);
+    padding: 100px 40px 110px;
+    border-top: 1px solid var(--rule);
+  }
+  .bump-down .bd-inner { max-width: 1200px; margin: 0 auto; }
+  .bump-down .bd-head {
+    text-align: center; max-width: 760px; margin: 0 auto 60px;
+  }
+  .bump-down .bd-head .eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    color: var(--ink-mute); margin-bottom: 18px;
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 700;
+  }
+  .bump-down .bd-head .eyebrow::before,
+  .bump-down .bd-head .eyebrow::after {
+    content: ''; width: 32px; height: 1px; background: var(--ink-mute);
+  }
+  .bump-down .bd-head h2 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 48px; line-height: 1.05; color: var(--navy);
+    letter-spacing: -0.02em; margin-bottom: 18px;
+    text-wrap: balance;
+  }
+  .bump-down .bd-head h2 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .bump-down .bd-head p {
+    font-size: 17px; color: var(--slate); line-height: 1.55;
+    max-width: 620px; margin: 0 auto;
+  }
+
+  .bd-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .bd-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    padding: 36px 32px 32px;
+    display: flex; flex-direction: column;
+    position: relative;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .bd-card:hover { border-color: var(--coral); transform: translateY(-3px); }
+  .bd-card.accent-coral { border-top: 3px solid var(--coral); }
+  .bd-card.accent-teal { border-top: 3px solid var(--teal); }
+  .bd-card.accent-navy { border-top: 3px solid var(--navy); }
+
+  .bd-card .bd-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase;
+    font-weight: 700; color: var(--ink-mute);
+    margin-bottom: 18px;
+  }
+  .bd-card .bd-tag .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: currentColor;
+  }
+  .bd-card.accent-coral .bd-tag { color: var(--coral); }
+  .bd-card.accent-teal .bd-tag { color: var(--teal); }
+  .bd-card.accent-navy .bd-tag { color: var(--slate); }
+
+  .bd-card h3 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 24px; line-height: 1.15; color: var(--navy);
+    letter-spacing: -0.015em; margin-bottom: 4px;
+    text-wrap: balance;
+  }
+  .bd-card h3 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .bd-card .bd-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--ink-mute);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+
+  .bd-card ul {
+    list-style: none; padding: 0; margin: 0 0 26px;
+    border-top: 1px solid var(--rule);
+    padding-top: 20px;
+  }
+  .bd-card ul li {
+    font-size: 13.5px; color: var(--slate); line-height: 1.5;
+    padding: 8px 0 8px 22px; position: relative;
+  }
+  .bd-card ul li::before {
+    content: ''; position: absolute; left: 0; top: 15px;
+    width: 10px; height: 1px; background: var(--coral);
+  }
+
+  .bd-card .bd-price {
+    margin-top: auto;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+  }
+  .bd-card .bd-price .big {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 38px; color: var(--navy); line-height: 1;
+    letter-spacing: -0.02em; margin-bottom: 4px;
+  }
+  .bd-card .bd-price .big .dollar { font-size: 20px; vertical-align: top; font-weight: 400; margin-right: 2px; }
+  .bd-card .bd-price .split {
+    font-size: 12px; color: var(--ink-mute); letter-spacing: 0.04em;
+    margin-bottom: 18px;
+  }
+  .bd-card .bd-cta {
+    display: block; width: 100%; text-align: center;
+    padding: 14px 20px;
+    background: transparent;
+    border: 1px solid var(--navy);
+    color: var(--navy);
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .bd-card .bd-cta:hover { background: var(--navy); color: #fff; }
+  .bd-card.accent-coral .bd-cta { border-color: var(--coral); color: var(--coral); }
+  .bd-card.accent-coral .bd-cta:hover { background: var(--coral); color: var(--navy-dark); }
+  .bd-card.accent-teal .bd-cta { border-color: var(--teal); color: var(--teal); }
+  .bd-card.accent-teal .bd-cta:hover { background: var(--teal); color: var(--navy-dark); }
+
+  .bd-foot {
+    margin-top: 40px; text-align: center;
+    font-size: 13px; color: var(--ink-mute); font-style: italic;
+    max-width: 620px; margin-left: auto; margin-right: auto;
+  }
+
+  @media (max-width: 900px) {
+    .bd-cards { grid-template-columns: 1fr; }
+    .bump-down .bd-head h2 { font-size: 32px; }
+  }
+
+  @media (max-width: 900px) {
+    .replay-hero h1 { font-size: 44px; }
+    .replay-grid { grid-template-columns: 1fr; }
+    .shift-section h2 { font-size: 38px; }
+    .shift-cards { grid-template-columns: 1fr; }
+    .offer-intro h2 { font-size: 44px; }
+    .stack-section .inner { grid-template-columns: 1fr; }
+    .stack-section h2 { font-size: 36px; }
+    .price-card { position: static; }
+    .guarantee-box { grid-template-columns: 1fr; padding: 30px; gap: 24px; text-align: center; }
+    .guarantee-box .seal-stamp { margin: 0 auto; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .final-offer h2 { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="bar-inner">
+    <a href="index.html" class="brand"><img class="mark" src="assets/lur-puzzle.svg" alt="LUR Growth" width="52" height="52"/><span class="name">LUR<br/>Growth</span></a>
+    <div class="bar-meta">
+      <span class="live">Replay live · 72h window</span>
+      <span class="dot">·</span>
+      <span>Calm Infrastructure Intensive</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── REPLAY HERO ─────────────────────────────── -->
+<section class="replay-hero">
+  <div class="inner">
+    <div class="chip-row">
+      <div class="chip coral">Replay · Limited 72 hours</div>
+      <div class="chip">Recorded May 21</div>
+      <div class="chip">90 minutes</div>
+    </div>
+    <h1>The webinar is over. The <span class="italic">framework</span> is yours for 72 hours.</h1>
+    <p class="sub">If you were there live, thank you for showing up. If you missed it, watch it once, attentively, and then decide whether you want help implementing. The offer below is open until the replay expires.</p>
+
+    <div class="replay-grid">
+      <div class="video-frame">
+        <div class="bg-overlay"></div>
+        <div class="play-btn" onclick="showToast('Replay would begin here (1h 27m runtime)')">
+          <div class="tri"></div>
+        </div>
+        <div class="vf-meta">
+          <span>AI Integration for Nonprofit Leaders · Webinar Replay</span>
+          <span class="runtime">1 : 27 : 14</span>
+        </div>
+      </div>
+
+      <div class="replay-meta-card">
+        <h4>What you'll see in 90 minutes</h4>
+        <div class="rmc-rows">
+          <div class="rmc-row"><div class="k">00 : 15</div><div class="v">The three-layer framework</div></div>
+          <div class="rmc-row"><div class="k">00 : 40</div><div class="v">Walkthrough one, grant capture</div></div>
+          <div class="rmc-row"><div class="k">00 : 55</div><div class="v">Walkthrough two, donor triptych</div></div>
+          <div class="rmc-row"><div class="k">01 : 15</div><div class="v">Self-assessment · 5 questions</div></div>
+          <div class="rmc-row"><div class="k">01 : 30</div><div class="v">Open Q&A + the one offer</div></div>
+        </div>
+        <div class="expires">Replay expires in</div>
+        <div class="countdown" id="replay-countdown">
+          <div class="unit"><div class="n" data-c="d">02</div><div class="l">Days</div></div>
+          <div class="unit"><div class="n" data-c="h">14</div><div class="l">Hours</div></div>
+          <div class="unit"><div class="n" data-c="m">38</div><div class="l">Mins</div></div>
+          <div class="unit"><div class="n" data-c="s">21</div><div class="l">Secs</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── THE SHIFT ─────────────────────────────── -->
+<section class="shift-section">
+  <div class="sec-head">
+    <div class="eyebrow">What we covered</div>
+    <h2 style="margin-top: 18px;">The shift that happens when you stop buying tools and start designing <span class="italic">infrastructure</span>.</h2>
+    <p class="lede">You watched two workflows live. Same tool. Same nonprofit. Same writer. The difference was the structure around the AI, not the AI itself.</p>
+  </div>
+
+  <div class="shift-cards">
+    <div class="shift-card before">
+      <div class="label">Before · Tool-first</div>
+      <h4>AI as a magic wand. Ask and hope.</h4>
+      <p>You paste context into a blank chat. You pray the output sounds like your voice. You rewrite it anyway, because it rarely does. The hours compound, in the wrong direction.</p>
+      <ul>
+        <li>Voice drifts. Donors notice.</li>
+        <li>Every task starts from blank.</li>
+        <li>Output quality depends on your mood.</li>
+        <li>Staff stop using it after two weeks.</li>
+      </ul>
+    </div>
+    <div class="shift-card after">
+      <div class="label">After · Infrastructure</div>
+      <h4>AI as raw material. Workflow does the heavy lifting.</h4>
+      <p>The workflow carries the context, the references, the voice. You review, edit, and send. The workflow is the product, not the model.</p>
+      <ul>
+        <li>Voice is protected at the workflow level.</li>
+        <li>Every task starts 80% done.</li>
+        <li>Output quality is consistent across staff.</li>
+        <li>Use grows over time, not shrinks.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── OFFER INTRO ─────────────────────────────── -->
+<section class="offer-intro">
+  <div class="inner">
+    <div class="eyebrow">The Offer</div>
+    <h2>If you want help building the <span class="italic">infrastructure</span>, here's what that looks like.</h2>
+    <p class="lede">The Calm Infrastructure Intensive is a six-week, structured program for nonprofit leaders who want to stop experimenting with AI and start running it the way they run their org, with care.</p>
+  </div>
+</section>
+
+<!-- ── VALUE STACK ─────────────────────────────── -->
+<section class="stack-section">
+  <div class="inner">
+    <div>
+      <div class="s-head">
+        <div class="eyebrow" style="color: var(--coral);">The Full Stack · Six Weeks</div>
+        <h2>Six weeks. One workflow designed and shipped. Then the <span class="italic">compound</span>.</h2>
+        <p class="sec-sub">You leave the program with one production workflow running, the framework to design the next five yourself, and a small cohort of leaders who built theirs alongside you.</p>
+      </div>
+
+      <div class="stack-list">
+        <div class="stack-item">
+          <div class="chk">✓</div>
+          <div class="body">
+            <h4>AI Integration for Nonprofit Leaders · CPD-Accredited Course</h4>
+            <p>Six modules, 8 to 10 CPD hours, 23-page branded workbook, six organizational deliverables, 60 quiz questions, and your CPD certificate upon completion.</p>
+          </div>
+          <div class="val">$1,297</div>
+        </div>
+        <div class="stack-item">
+          <div class="chk">✓</div>
+          <div class="body">
+            <h4>The Calm Infrastructure Lab · Skool Community Access</h4>
+            <p>Six months of access to the Lab community including peer support, templates, frameworks, implementation help, and monthly live sessions with Latoya.</p>
+          </div>
+          <div class="val">$582 <span style="font-weight:400;font-size:12px;color:rgba(255,255,255,0.5);display:block;">$97/month × 6</span></div>
+        </div>
+        <div class="stack-item">
+          <div class="chk">✓</div>
+          <div class="body">
+            <h4>AI Workflow Audit with Latoya · 90 minutes</h4>
+            <p>One private session. Bring your organization. We'll map your highest-leverage AI integration points and build your custom workflow plan end to end together.</p>
+          </div>
+          <div class="val">$497</div>
+        </div>
+        <div class="stack-item">
+          <div class="chk">✓</div>
+          <div class="body">
+            <h4>Lead Through the Storm · CPD-Accredited Course</h4>
+            <p>The regenerative leadership reset that gives you the inner foundation to lead AI integration without burning out. Five modules, guided meditations, reflection workbooks, and your CPD certificate upon completion.</p>
+          </div>
+          <div class="val">$797</div>
+        </div>
+        <div class="stack-item bonus">
+          <div class="bonus-badge">
+            <div class="bb-label">Bonus</div>
+            <div class="bb-num">01</div>
+            <div class="bb-chk">✓</div>
+          </div>
+          <div class="body">
+            <h4>Leadership Regeneration Audit with Latoya · 90 minutes</h4>
+            <p>One private session to assess your current storm level, identify depletion patterns, and build your personalized 90-day calm leadership plan.</p>
+          </div>
+          <div class="val">$497</div>
+        </div>
+        <div class="stack-item bonus">
+          <div class="bonus-badge">
+            <div class="bb-label">Bonus</div>
+            <div class="bb-num">02</div>
+            <div class="bb-chk">✓</div>
+          </div>
+          <div class="body">
+            <h4>Live Cohort Priority Access</h4>
+            <p>When the next live cohort opens, founding program members get first access before public registration at the standard cohort rate.</p>
+          </div>
+          <div class="val">$1,997</div>
+        </div>
+        <div class="stack-item bonus">
+          <div class="bonus-badge">
+            <div class="bb-label">Bonus</div>
+            <div class="bb-num">03</div>
+            <div class="bb-chk">✓</div>
+          </div>
+          <div class="body">
+            <h4>Skool Community Course Buyer Rate · Locked for Life</h4>
+            <p>Your Skool membership rate locks permanently at $67/month, the course buyer rate, for as long as you remain a member. Never pays the $97 standalone rate.</p>
+          </div>
+          <div class="val">$360 <span style="font-weight:400;font-size:12px;color:rgba(255,255,255,0.5);display:block;">savings over 3 years</span></div>
+        </div>
+      </div>
+
+      <div class="stack-total">
+        <div class="t-l">Total program value</div>
+        <div class="t-v">$5,665</div>
+      </div>
+    </div>
+
+    <div class="price-card">
+      <div class="seal">Founding Cohort</div>
+      <div class="founding-label">Webinar attendee price · This week only</div>
+      <div class="retail">Normally $2,094 for both CPD courses alone</div>
+      <div class="big"><span class="dollar">$</span>1,997</div>
+      <div class="split">or 3 payments of $699</div>
+      <div class="micro">One-time · Or split over three months · USD</div>
+
+      <a href="06-checkout.html" class="btn btn-primary btn-lg btn-block">
+        Join the Intensive <span class="arrow">→</span>
+      </a>
+
+      <div class="trust-row">
+        <span><span class="chk">✓</span> Stripe secure</span>
+        <span><span class="chk">✓</span> 30-day guarantee</span>
+      </div>
+
+      <div class="scarcity">
+        Founding cohort · 22 of 30 seats claimed
+        <div class="seats-bar"><div class="seats-fill"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GUARANTEE ─────────────────────────────── -->
+<section class="guarantee-section">
+  <div class="guarantee-box">
+    <div class="seal-stamp">
+      <div class="num">30</div>
+      <div class="lbl">Day · Implement</div>
+    </div>
+    <div>
+      <h3>Implement in 30 days, or you get <span class="italic">100% back</span>.</h3>
+      <p>Run the framework. Design one workflow. Ship it. If by day 30 you haven't returned at least five hours to your week, send me a one-sentence note and I'll refund the whole program. No forms. No friction. I take the risk, because I've watched this work for dozens of nonprofits and I'd rather eat the occasional refund than have you hesitate at this page.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ─────────────────────────── -->
+<section class="testi-section">
+  <div class="inner">
+    <div class="sec-head">
+      <div class="eyebrow">What past cohorts say</div>
+      <h2 style="margin-top: 18px;">Quiet wins from leaders who <span class="italic">ran the framework</span>.</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi">
+        <div class="q-mark">"</div>
+        <div class="quote">I expected to learn prompts. I learned how to design workflows. My Dev Director now spends her Thursdays on donor relationships, not on donor paperwork. That alone paid for the program six times over.</div>
+        <div class="cite">
+          <div class="avatar">MD</div>
+          <div>
+            <div class="name">Marisol Delgado</div>
+            <div class="role">Executive Director · Literacy foundation · $2.4M</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi">
+        <div class="q-mark">"</div>
+        <div class="quote">The voice calibration kit alone was worth the tuition. We were scared to use AI for donor comms, after week two we had a workflow that protected our voice better than our previous process.</div>
+        <div class="cite">
+          <div class="avatar">AO</div>
+          <div>
+            <div class="name">Akin Oyelaran</div>
+            <div class="role">Development Director · Immigrant services · $6M</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi">
+        <div class="q-mark">"</div>
+        <div class="quote">I came in expecting a course. I left with one production workflow, a cohort of peers I still text weekly, and a clear sequence for the next five workflows I'll design this year.</div>
+        <div class="cite">
+          <div class="avatar">PL</div>
+          <div>
+            <div class="name">Priya Langston</div>
+            <div class="role">COO · Youth workforce nonprofit · $11M</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL OFFER ─────────────────────────────── -->
+<section class="bump-down">
+  <div class="bd-inner">
+    <div class="bd-head">
+      <div class="eyebrow">Another way in</div>
+      <h2>Not ready for the <span class="italic">full system</span>?</h2>
+      <p>No pressure. Each piece stands on its own. Pick the path that matches where you are — and come back for the full cohort when the timing is right.</p>
+    </div>
+
+    <div class="bd-cards">
+      <!-- Card 1: AI Integration standalone -->
+      <div class="bd-card accent-coral">
+        <div class="bd-tag"><span class="dot"></span>Course · Standalone</div>
+        <h3>AI Integration for <span class="italic">Nonprofit Leaders</span></h3>
+        <div class="bd-sub">CPD-accredited · Self-paced</div>
+        <ul>
+          <li>Six modules covering the full three-layer framework</li>
+          <li>8–10 CPD hours, professionally accredited</li>
+          <li>Six organizational deliverables you build as you go</li>
+          <li>CPD certificate upon completion</li>
+          <li>Lifetime access to course content and updates</li>
+        </ul>
+        <div class="bd-price">
+          <div class="big"><span class="dollar">$</span>1,297</div>
+          <div class="split">One-time · or 2 payments of $697</div>
+          <a href="06b-checkout-course.html" class="bd-cta">Switch to standalone course →</a>
+        </div>
+      </div>
+
+      <!-- Card 2: Lead Through the Storm standalone -->
+      <div class="bd-card accent-teal">
+        <div class="bd-tag"><span class="dot"></span>Course · Standalone</div>
+        <h3>Lead Through <span class="italic">the Storm</span></h3>
+        <div class="bd-sub">CPD-accredited · Leader regeneration</div>
+        <ul>
+          <li>Five modules on leading without burning out</li>
+          <li>CPD-accredited with certificate upon completion</li>
+          <li>Guided meditations for acute-storm moments</li>
+          <li>Reflection workbooks for each module</li>
+          <li>Works alongside any AI program or on its own</li>
+        </ul>
+        <div class="bd-price">
+          <div class="big"><span class="dollar">$</span>797</div>
+          <div class="split">One-time · or 2 payments of $427</div>
+          <a href="06c-checkout-storm.html" class="bd-cta">Switch to Lead Through the Storm →</a>
+        </div>
+      </div>
+
+      <!-- Card 3: Skool community -->
+      <div class="bd-card accent-navy">
+        <div class="bd-tag"><span class="dot"></span>Community · Monthly</div>
+        <h3>Just the <span class="italic">community</span>?</h3>
+        <div class="bd-sub">The Calm Infrastructure Lab on Skool</div>
+        <ul>
+          <li>Access to both course content libraries</li>
+          <li>Templates, prompts, SOPs, and frameworks</li>
+          <li>Monthly live sessions with Latoya and the cohort</li>
+          <li>Peer community of nonprofit leaders</li>
+          <li>Cancel anytime, keep everything you downloaded</li>
+        </ul>
+        <div class="bd-price">
+          <div class="big"><span class="dollar">$</span>97<span style="font-size:16px;color:var(--ink-mute);font-weight:400;letter-spacing:0;"> /mo</span></div>
+          <div class="split">Cancel anytime · No setup fees</div>
+          <a href="06d-checkout-skool.html" class="bd-cta">Join the Lab →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bd-foot">Bought a standalone course and want to upgrade later? The price you paid credits toward the full Intensive. Email <a href="mailto:hello@lurgrowth.com" style="color:var(--coral);">hello@lurgrowth.com</a>.</div>
+  </div>
+</section>
+
+<!-- ── FINAL OFFER ─────────────────────────────── -->
+<section class="final-offer">
+  <div class="inner">
+    <div class="eyebrow" style="color: var(--coral); margin-bottom: 24px;">One decision</div>
+    <h2>You have the framework. The next question is whether you run it <span class="italic">alone</span> or with the cohort.</h2>
+    <p class="sub">Both are valid. The framework works either way. The cohort is for leaders who would rather ship one workflow in six weeks than be working on it in September.</p>
+
+    <div class="final-cd">
+      <div class="l">Founding rate closes with the replay</div>
+      <div class="countdown" id="final-countdown">
+        <div class="unit"><div class="n" data-c="d">02</div><div class="l">Days</div></div>
+        <div class="unit"><div class="n" data-c="h">14</div><div class="l">Hours</div></div>
+        <div class="unit"><div class="n" data-c="m">38</div><div class="l">Mins</div></div>
+        <div class="unit"><div class="n" data-c="s">21</div><div class="l">Secs</div></div>
+      </div>
+    </div>
+
+    <div class="cta-stack">
+      <a href="06-checkout.html" class="btn btn-primary btn-lg">Join the founding cohort · $1,997 <span class="arrow">→</span></a>
+      <div class="cta-micro">
+        <span>Or 3 × $699</span>
+        <span class="dot-sep">·</span>
+        <span>30-day guarantee</span>
+        <span class="dot-sep">·</span>
+        <span>8 seats left</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot-chrome">
+  <div class="foot-inner">
+    <div>
+      <div class="foot-brand"><img class="mark foot-mark" src="assets/lur-puzzle.svg" alt="" width="64" height="64"/><span class="wm">LUR <span class="italic">Growth</span></span></div>
+      <div class="foot-note" style="margin-top: 14px;">Calm infrastructure for nonprofit leaders integrating AI with care. © 2026 LUR Growth.</div>
+    </div>
+    <div class="foot-links">
+      <a href="03-reminders.html">← Reminders</a>
+      <a href="06-checkout.html">Checkout →</a>
+      <a href="index.html">Funnel index</a>
+    </div>
+  </div>
+</footer>
+
+<script src="styles/funnel.js"></script>
+<script>
+  // Replay expires 72h from "now"
+  const expires = new Date(Date.now() + 1000*60*60*62 + 1000*60*38);
+  startCountdown('#replay-countdown', expires);
+  startCountdown('#final-countdown', expires);
+</script>
+</body>
+</html>

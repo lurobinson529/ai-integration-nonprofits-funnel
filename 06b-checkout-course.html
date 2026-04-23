@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Checkout · AI Integration for Nonprofit Leaders</title>
+<link rel="stylesheet" href="styles/funnel.css?v=2"/>
+<style>
+  body { background: var(--off); }
+
+  .checkout-bar {
+    background: var(--navy); color: #fff;
+    padding: 14px 40px;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700;
+    text-align: center;
+  }
+  .checkout-bar .coral { color: var(--coral); margin: 0 10px; }
+
+  .back-bar {
+    max-width: 1180px; margin: 0 auto; padding: 20px 40px 0;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
+  }
+  .back-bar a { color: var(--ink-mute); text-decoration: none; transition: color 0.2s; }
+  .back-bar a:hover { color: var(--coral); }
+
+  .checkout {
+    max-width: 1180px; margin: 0 auto; padding: 36px 40px 100px;
+    display: grid; grid-template-columns: 1.3fr 1fr; gap: 50px;
+    align-items: start;
+  }
+
+  .co-left .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 700;
+    color: var(--coral); margin-bottom: 16px;
+  }
+  .co-left .eyebrow::before { content: ''; width: 26px; height: 1px; background: var(--coral); }
+  .co-left h1 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 46px; line-height: 1.02; color: var(--navy);
+    letter-spacing: -0.018em; margin-bottom: 14px;
+    text-wrap: balance;
+  }
+  .co-left h1 .italic { font-style: italic; font-weight: 400; color: var(--coral); }
+  .co-left .lede {
+    font-size: 17px; color: var(--slate); margin-bottom: 36px; max-width: 540px;
+    line-height: 1.55;
+  }
+
+  .co-section {
+    background: #fff; border: 1px solid var(--rule); padding: 32px 34px;
+    margin-bottom: 18px;
+  }
+  .co-section h3 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 22px; color: var(--navy); letter-spacing: -0.005em;
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .co-section h3 .step {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .form-row { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; }
+  .form-row.full { grid-template-columns: 1fr; }
+  .form-field { display: flex; flex-direction: column; gap: 6px; }
+  .form-field label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 700; color: var(--ink-mute);
+  }
+  .form-field input, .form-field select {
+    background: var(--paper); border: 1px solid var(--rule);
+    padding: 14px 16px;
+    font-family: 'Inter', sans-serif; font-size: 15px; color: var(--navy);
+    transition: border-color 0.2s, background 0.2s; border-radius: 0;
+  }
+  .form-field input:focus, .form-field select:focus {
+    outline: none; border-color: var(--coral); background: #fff;
+    box-shadow: 0 0 0 3px rgba(253,157,125,0.12);
+  }
+  .form-field .hint {
+    font-size: 11px; color: var(--ink-mute); font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em;
+  }
+
+  .pay-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+  .pay-option {
+    padding: 18px 20px; border: 1px solid var(--rule); background: var(--paper);
+    cursor: pointer; transition: all 0.2s;
+    display: flex; flex-direction: column; gap: 4px; position: relative;
+  }
+  .pay-option.active {
+    border-color: var(--coral); background: #fff;
+    box-shadow: 0 0 0 2px rgba(253,157,125,0.12);
+  }
+  .pay-option .po-name {
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 18px;
+    color: var(--navy); letter-spacing: -0.005em;
+  }
+  .pay-option .po-sub { font-size: 12px; color: var(--ink-mute); }
+  .pay-option.active::before {
+    content: ''; position: absolute; top: 12px; right: 12px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--coral); box-shadow: inset 0 0 0 3px #fff;
+  }
+
+  .co-summary {
+    position: sticky; top: 90px;
+    background: #fff; border: 1px solid var(--rule); border-top: 3px solid var(--coral);
+    padding: 36px 34px 30px;
+  }
+  .co-summary .co-title {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 22px; color: var(--navy); letter-spacing: -0.005em;
+    margin-bottom: 6px;
+  }
+  .co-summary .co-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--ink-mute);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding-bottom: 22px; margin-bottom: 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sum-item {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 12px; padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 14px;
+  }
+  .sum-item .si-name { color: var(--navy); font-weight: 600; }
+  .sum-item .si-desc { font-size: 12px; color: var(--ink-mute); margin-top: 2px; }
+  .sum-item .si-val { font-family: 'Fraunces', serif; font-weight: 600; color: var(--navy); }
+  .sum-item.free .si-val { color: var(--teal-deep); }
+
+  .sum-total {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 22px 0 4px; margin-top: 8px;
+    border-top: 2px solid var(--navy);
+  }
+  .sum-total .l { font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; color: var(--navy); }
+  .sum-total .v { font-family: 'Fraunces', serif; font-weight: 600; font-size: 38px; color: var(--navy); letter-spacing: -0.018em; }
+  .sum-total .v .dollar { font-size: 20px; vertical-align: top; font-weight: 400; margin-right: 2px; }
+  .sum-recur { font-size: 11px; color: var(--ink-mute); letter-spacing: 0.06em; text-align: right; margin-top: 4px; }
+
+  .co-submit {
+    margin-top: 20px;
+    display: block; width: 100%;
+    background: var(--coral); color: var(--navy-dark);
+    padding: 20px; text-align: center;
+    font-weight: 700; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+    border: none; cursor: pointer;
+    box-shadow: 0 18px 40px rgba(253,157,125,0.28);
+    transition: transform 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .co-submit:hover { transform: translateY(-2px); }
+
+  .trust-strip {
+    margin-top: 18px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+    font-size: 11px; letter-spacing: 0.04em; color: var(--slate);
+  }
+  .trust-strip .ti { display: flex; gap: 8px; align-items: center; }
+  .trust-strip .chk { color: var(--teal-deep); font-weight: 700; }
+
+  .guar-mini {
+    margin-top: 22px; padding: 20px; background: var(--paper);
+    border-left: 3px solid var(--teal);
+    display: grid; grid-template-columns: 50px 1fr; gap: 14px; align-items: center;
+  }
+  .guar-mini .gs {
+    width: 50px; height: 50px; border-radius: 50%;
+    background: var(--teal); color: var(--navy-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 20px;
+  }
+  .guar-mini .gt { font-size: 12px; color: var(--slate); line-height: 1.45; }
+  .guar-mini .gt strong { color: var(--navy); }
+
+  .upgrade-note {
+    margin-top: 18px; padding: 18px 20px;
+    background: rgba(253,157,125,0.06);
+    border: 1px dashed var(--coral);
+    font-size: 12.5px; line-height: 1.5; color: var(--slate);
+  }
+  .upgrade-note strong { color: var(--navy); display: block; margin-bottom: 4px; font-family: 'Fraunces', serif; font-weight: 600; font-size: 14px; }
+  .upgrade-note a { color: var(--coral); font-weight: 600; text-decoration: underline; }
+
+  /* What you get list */
+  .whats-included {
+    background: #fff; border: 1px solid var(--rule);
+    padding: 28px 32px; margin-bottom: 18px;
+  }
+  .whats-included .wi-title {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 18px; color: var(--navy); letter-spacing: -0.005em;
+    margin-bottom: 18px;
+    padding-bottom: 14px; border-bottom: 1px solid var(--rule);
+  }
+  .whats-included ul {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px 22px;
+  }
+  .whats-included li {
+    font-size: 13px; color: var(--slate); line-height: 1.45;
+    padding: 6px 0 6px 22px; position: relative;
+  }
+  .whats-included li::before {
+    content: '✓'; position: absolute; left: 0; top: 5px;
+    color: var(--teal-deep); font-weight: 700; font-size: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .checkout { grid-template-columns: 1fr; padding: 24px 20px 60px; }
+    .co-summary { position: static; }
+    .co-left h1 { font-size: 32px; }
+    .form-row { grid-template-columns: 1fr; }
+    .whats-included ul { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="checkout-bar">
+  Standalone CPD-accredited course <span class="coral">·</span> Lifetime access <span class="coral">·</span> 30-day refund window
+</div>
+
+<header class="topbar">
+  <div class="bar-inner">
+    <a href="index.html" class="brand"><img class="mark" src="assets/lur-puzzle.svg" alt="LUR Growth" width="52" height="52"/><span class="name">LUR<br/>Growth</span></a>
+    <div class="bar-meta">
+      <span>Secure checkout</span>
+      <span class="dot">·</span>
+      <span>256-bit SSL · Stripe</span>
+    </div>
+  </div>
+</header>
+
+<div class="back-bar">
+  <a href="05-sales.html">← Change your mind? See all three paths</a>
+</div>
+
+<section class="checkout">
+
+  <!-- LEFT FORM -->
+  <div class="co-left">
+    <div class="eyebrow">Course · Standalone</div>
+    <h1>Take the framework <span class="italic">with you</span>. Build it at your own pace.</h1>
+    <p class="lede">You get the complete six-module program, lifetime access, every deliverable template, and your CPD certificate. Start the day payment clears. Finish on your timeline.</p>
+
+    <div class="whats-included">
+      <div class="wi-title">What's inside the course</div>
+      <ul>
+        <li>Module 1 · Read the storm you're in</li>
+        <li>Module 2 · Map your workflow layers</li>
+        <li>Module 3 · Pick your first AI integration</li>
+        <li>Module 4 · Ship the 5-hour workflow</li>
+        <li>Module 5 · Build the calm operating rhythm</li>
+        <li>Module 6 · Scale without breaking people</li>
+        <li>Six organizational deliverables</li>
+        <li>8–10 CPD hours · accredited certificate</li>
+        <li>Lifetime access · all future updates</li>
+        <li>Downloadable templates and prompt library</li>
+      </ul>
+    </div>
+
+    <form>
+      <div class="co-section">
+        <h3><span class="step">1</span>Who the course is for</h3>
+        <div class="form-row">
+          <div class="form-field">
+            <label>First name</label>
+            <input type="text" placeholder="Your first name" />
+          </div>
+          <div class="form-field">
+            <label>Last name</label>
+            <input type="text" placeholder="Your last name" />
+          </div>
+        </div>
+        <div class="form-row full" style="margin-top: 14px;">
+          <div class="form-field">
+            <label>Email</label>
+            <input type="email" placeholder="you@nonprofit.org" />
+            <div class="hint">Course access, receipts, and your CPD certificate land here.</div>
+          </div>
+        </div>
+        <div class="form-row" style="margin-top: 14px;">
+          <div class="form-field">
+            <label>Organization</label>
+            <input type="text" placeholder="Your nonprofit" />
+          </div>
+          <div class="form-field">
+            <label>Role</label>
+            <select>
+              <option>Executive Director</option>
+              <option>Development Director</option>
+              <option>Operations Lead</option>
+              <option>Program Director</option>
+              <option>Founder / CEO</option>
+              <option>Board member</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="co-section">
+        <h3><span class="step">2</span>How you'd like to pay</h3>
+        <div class="pay-toggle">
+          <div class="pay-option active" onclick="selectPay(this, 'once')">
+            <div class="po-name">$1,297 once</div>
+            <div class="po-sub">One payment. Lifetime access unlocked.</div>
+          </div>
+          <div class="pay-option" onclick="selectPay(this, 'split')">
+            <div class="po-name">2 × $697</div>
+            <div class="po-sub">First charge today. Next in 30 days.</div>
+          </div>
+        </div>
+
+        <div class="form-row full">
+          <div class="form-field">
+            <label>Card number</label>
+            <input type="text" placeholder="•••• •••• •••• ••••" />
+            <div class="hint">Powered by Stripe · your card never touches our servers</div>
+          </div>
+        </div>
+        <div class="form-row" style="margin-top: 14px; grid-template-columns: 1fr 1fr 1fr;">
+          <div class="form-field"><label>Expiry</label><input type="text" placeholder="MM / YY" /></div>
+          <div class="form-field"><label>CVC</label><input type="text" placeholder="•••" /></div>
+          <div class="form-field"><label>ZIP</label><input type="text" placeholder="12345" /></div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- RIGHT SUMMARY -->
+  <aside class="co-summary">
+    <div class="co-title">AI Integration for Nonprofit Leaders</div>
+    <div class="co-sub">CPD-accredited · Standalone course</div>
+
+    <div class="sum-item">
+      <div>
+        <div class="si-name">Six-module course · CPD-accredited</div>
+        <div class="si-desc">Lifetime access, all future updates</div>
+      </div>
+      <div class="si-val">$1,297</div>
+    </div>
+    <div class="sum-item free">
+      <div>
+        <div class="si-name">Six organizational deliverables</div>
+        <div class="si-desc">Template pack you build as you go</div>
+      </div>
+      <div class="si-val">Included</div>
+    </div>
+    <div class="sum-item free">
+      <div>
+        <div class="si-name">CPD certificate upon completion</div>
+        <div class="si-desc">8–10 CPD hours, accredited</div>
+      </div>
+      <div class="si-val">Included</div>
+    </div>
+    <div class="sum-item free">
+      <div>
+        <div class="si-name">Prompt library &amp; starter SOPs</div>
+        <div class="si-desc">Downloadable · edit freely</div>
+      </div>
+      <div class="si-val">Included</div>
+    </div>
+
+    <div class="sum-total">
+      <div class="l">Total today</div>
+      <div class="v"><span class="dollar">$</span><span id="total-val">1,297</span></div>
+    </div>
+    <div class="sum-recur" id="recur-note">One-time · USD · No recurring charges</div>
+
+    <button class="co-submit" onclick="submitOrder(event)">
+      Enroll &amp; start today <span style="font-family:'Fraunces',serif;font-style:italic;font-weight:400;">→</span>
+    </button>
+
+    <div class="trust-strip">
+      <div class="ti"><span class="chk">✓</span> SSL encrypted</div>
+      <div class="ti"><span class="chk">✓</span> Stripe secured</div>
+      <div class="ti"><span class="chk">✓</span> Lifetime access</div>
+      <div class="ti"><span class="chk">✓</span> Human support</div>
+    </div>
+
+    <div class="guar-mini">
+      <div class="gs">30</div>
+      <div class="gt"><strong>30-day money-back guarantee.</strong> Work through the first two modules. If it's not right for you, reply with one sentence and get a full refund. No forms.</div>
+    </div>
+
+    <div class="upgrade-note">
+      <strong>Want the full Intensive later?</strong>
+      Your $1,297 credits fully toward the Calm Infrastructure Intensive if you upgrade within 12 months. <a href="05-sales.html">See the full system →</a>
+    </div>
+  </aside>
+</section>
+
+<footer class="foot-chrome">
+  <div class="foot-inner">
+    <div>
+      <div class="foot-brand"><img class="mark foot-mark" src="assets/lur-puzzle.svg" alt="" width="64" height="64"/><span class="wm">LUR <span class="italic">Growth</span></span></div>
+      <div class="foot-note" style="margin-top: 14px;">Questions about the course? <a href="mailto:latoya@lurgrowth.com" style="color:var(--coral); text-decoration:underline;">Email Latoya directly</a>.</div>
+    </div>
+    <div class="foot-links">
+      <a href="05-sales.html">← All offers</a>
+      <a href="06c-checkout-storm.html">Lead Through the Storm →</a>
+      <a href="index.html">Funnel index</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let plan = 'once';
+  function selectPay(el, type) {
+    document.querySelectorAll('.pay-option').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    plan = type;
+    document.getElementById('total-val').textContent = plan === 'once' ? '1,297' : '697';
+    document.getElementById('recur-note').textContent =
+      plan === 'once' ? 'One-time · USD · No recurring charges' : 'First of 2 monthly payments · Next charge in 30 days';
+  }
+  function submitOrder(e) {
+    e.preventDefault();
+    const btn = e.target.closest('.co-submit');
+    btn.textContent = 'Processing...';
+    btn.style.background = 'var(--navy)';
+    btn.style.color = '#fff';
+    setTimeout(() => { window.location.href = '07-welcome.html'; }, 1400);
+  }
+</script>
+</body>
+</html>

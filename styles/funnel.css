@@ -57,7 +57,7 @@ button { font: inherit; cursor: pointer; }
 .brand .mark { width: 52px; height: 52px; flex-shrink: 0; }
 .brand .name {
   font-family: 'Fraunces', serif; font-weight: 600;
-  font-size: 15px; line-height: 1.05; letter-spacing: -0.01em;
+  font-size: 22px; line-height: 1.0; letter-spacing: -0.015em;
   color: var(--navy);
 }
 .bar-meta {
@@ -335,7 +335,7 @@ select.field {
 @media (max-width: 900px) {
   .bar-inner { padding: 14px 20px; }
   .brand .mark { width: 44px; height: 44px; }
-  .brand .name { font-size: 14px; }
+  .brand .name { font-size: 18px; }
   .bar-meta { font-size: 10px; gap: 8px; }
   .foot-chrome { padding: 50px 24px 44px; }
   .foot-inner { grid-template-columns: 1fr; gap: 36px; }
